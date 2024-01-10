@@ -15,6 +15,10 @@ import Scm from './pages/scm/Scm'
 import ScmView from './pages/scm/ScmView'
 import ScmCreate from "./pages/scm/ScmCreate";
 import ScmUpdate from "./pages/scm/ScmUpdate";
+import Nam from './pages/nam/Nam';
+import NamView from './pages/nam/NamView';
+import NamCreate from "./pages/nam/NamCreate";
+import NamUpdate from "./pages/nam/NamUpdate";
 
 function App() {
   return (
@@ -36,6 +40,10 @@ function App() {
             <Route path='/scm/:id' element={<ScmView />}/>
             <Route path='/scm/create' element={<ScmCreate />}/>
             <Route path='/scm/update/:id' element={<ScmUpdate />}/>
+            <Route path='/nam' element={<Nam />}/>
+            <Route path='/nam/:namId' element={<NamView />}/>
+            <Route path='/nam/create' element={<NamCreate />}/>
+            <Route path='/nam/update/:namId' element={<NamUpdate />}/>
           </Routes>
         </Router>
       </>

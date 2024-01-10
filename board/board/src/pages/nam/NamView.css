@@ -1,0 +1,30 @@
+.nam-view-wrapper {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.nam-view-go-list-btn {
+    border: 0;
+    padding: 10px;
+    background-color: #ffd9d9;
+}
+
+.nam-view-row {
+    margin: 10px 0;
+    display: flex;
+}
+
+.nam-view-row>label:first-child {
+    margin: 10px 0;
+    width: 30%;
+    font-weight: bold;
+}
+
+.nam-view-row>*:nth-child(2) {
+    margin: 10px 0;
+    width: 70%;
+}
+
+.nam-footer {
+    text-align: center;
+}

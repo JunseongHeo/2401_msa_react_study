@@ -11,6 +11,10 @@ import Jun from "./pages/jun/Jun";
 import JunView from './pages/jun/JunView'
 import JunCreate from "./pages/jun/JunCreate";
 import JunUpdate from "./pages/jun/JunUpdate";
+import Scm from './pages/scm/Scm'
+import ScmView from './pages/scm/ScmView'
+import ScmCreate from "./pages/scm/ScmCreate";
+import ScmUpdate from "./pages/scm/ScmUpdate";
 
 function App() {
   return (
@@ -28,6 +32,10 @@ function App() {
             <Route path='/jun/:junId' element={<JunView />}/>
             <Route path='/jun/create' element={<JunCreate />}/>
             <Route path='/jun/update/:junId' element={<JunUpdate />}/>
+            <Route path='/scm' element={<Scm />}/>
+            <Route path='/scm/:id' element={<ScmView />}/>
+            <Route path='/scm/create' element={<ScmCreate />}/>
+            <Route path='/scm/update/:id' element={<ScmUpdate />}/>
           </Routes>
         </Router>
       </>

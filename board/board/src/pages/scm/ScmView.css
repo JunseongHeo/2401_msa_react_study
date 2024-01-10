@@ -1,0 +1,40 @@
+.scm-view-wrapper {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.scm-view-go-list-btn {
+    padding: 10px;
+    background-color: #282c34;
+    color: white;
+    margin: 10px;
+}
+
+.btn-right {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.scm-view-row {
+    margin: 10px 0;
+    display: flex;
+}
+
+.scm-view-row>label:first-child {
+    margin: 10px 0;
+    width: 30%;
+    font-weight: bold;
+}
+
+.scm-view-row>*:nth-child(2) {
+    margin: 10px 0;
+    width: 70%;
+}
+
+.scm-footer {
+    text-align: center;
+}
+
+textarea,.content {
+    height: 200px;
+}

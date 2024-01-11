@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 
 @Entity
-@Table(name = "board")
+@Table(name = "board_scm")
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamicInsert
-public class Board {
+public class BoardScm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

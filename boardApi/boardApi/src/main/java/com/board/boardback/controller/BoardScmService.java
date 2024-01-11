@@ -1,65 +1,64 @@
 package com.board.boardback.controller;
 
 import com.board.boardback.exception.ResourceNotFoundException;
-import com.board.boardback.model.Board;
-import com.board.boardback.repository.BoardRepository;
+import com.board.boardback.model.BoardScm;
+import com.board.boardback.repository.BoardScmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class BoardService {
+public class BoardScmService {
 
     @Autowired
-    private BoardRepository boardRepository;
+    private BoardScmRepository boardScmRepository;
 
     // create board rest api
-    public Board createBoard(@RequestBody Board board) {
+    public BoardScm createBoard(@RequestBody BoardScm board) {
         LocalDateTime localDate = LocalDateTime.now();
         board.setInsertTime(localDate.toString());
-        return boardRepository.save(board);
+        return boardScmRepository.save(board);
     }
 
     // list all boards
-    public List<Board> listAllBoards() {
-        return boardRepository.findAll();
+    public List<BoardScm> listAllBoards() {
+        return boardScmRepository.findAll();
     }
 
     // get board by id
-    public ResponseEntity<Board> getBoardById(@PathVariable Integer id) {
-        Board board = boardRepository.findById(id)
+    public ResponseEntity<BoardScm> getBoardById(@PathVariable Integer id) {
+        BoardScm board = boardScmRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Board not exist with id :" + id));
 
         return ResponseEntity.ok(board);
     }
 
     // update board
-    public ResponseEntity<Board> updateBoard(@PathVariable Integer id, @RequestBody Board boardDetails) {
+    public ResponseEntity<BoardScm> updateBoard(@PathVariable Integer id, @RequestBody BoardScm boardDetails) {
 
-        Board board = boardRepository.findById(id)
+        BoardScm board = boardScmRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Board not exist with id : " + id));
 
         board.setTitle(boardDetails.getTitle());
         board.setContent(boardDetails.getContent());
 
-        Board updateBoard = boardRepository.save(board);
+        BoardScm updateBoard = boardScmRepository.save(board);
 
         return ResponseEntity.ok(updateBoard);
     }
 
     // delete board
-    public ResponseEntity<Board> deleteBoard(@PathVariable Integer id) {
-        Board board = boardRepository.findById(id)
+    public ResponseEntity<BoardScm> deleteBoard(@PathVariable Integer id) {
+        BoardScm board = boardScmRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Board not exist with id : " + id));
 
         board.setDeleteYn("Y");
-        Board updateBoard = boardRepository.save(board);
+        BoardScm updateBoard = boardScmRepository.save(board);
         return ResponseEntity.ok(updateBoard);
     }
 }

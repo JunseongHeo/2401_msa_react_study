@@ -1,6 +1,6 @@
 package com.board.boardback.controller;
 
-import com.board.boardback.model.Board;
+import com.board.boardback.model.BoardScm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,38 +10,38 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
-public class BoardController {
+public class BoardScmController {
 
     @Autowired
-    private BoardService boardService;
+    private BoardScmService boardScmService;
 
     // create board rest api
-    @PostMapping("/boards")
-    public Board createBoard(@RequestBody Board board) {
-        return boardService.createBoard(board);
+    @PostMapping("/boardscm")
+    public BoardScm createBoard(@RequestBody BoardScm board) {
+        return boardScmService.createBoard(board);
     }
 
     // list all boards
-    @GetMapping("/boards")
-    public List<Board> listAllBoards() {
-        return boardService.listAllBoards();
+    @GetMapping("/boardscm")
+    public List<BoardScm> listAllBoards() {
+        return boardScmService.listAllBoards();
     }
 
     // get board by id
-    @GetMapping("/boards/{id}")
-    public ResponseEntity<Board> getBoardById(@PathVariable Integer id) {
-        return boardService.getBoardById(id);
+    @GetMapping("/boardscm/{id}")
+    public ResponseEntity<BoardScm> getBoardById(@PathVariable Integer id) {
+        return boardScmService.getBoardById(id);
     }
 
     // update board
-    @PutMapping("/boards/{id}")
-    public ResponseEntity<Board> updateBoard(@PathVariable Integer id, @RequestBody Board boardDetails) {
-        return boardService.updateBoard(id, boardDetails);
+    @PutMapping("/boardscm/{id}")
+    public ResponseEntity<BoardScm> updateBoard(@PathVariable Integer id, @RequestBody BoardScm boardDetails) {
+        return boardScmService.updateBoard(id, boardDetails);
     }
 
     // delete board
-    @DeleteMapping("/boards/{id}")
-    public ResponseEntity<Board> deleteBoard(@PathVariable Integer id) {
-        return boardService.deleteBoard(id);
+    @DeleteMapping("/boardscm/{id}")
+    public ResponseEntity<BoardScm> deleteBoard(@PathVariable Integer id) {
+        return boardScmService.deleteBoard(id);
     }
 }

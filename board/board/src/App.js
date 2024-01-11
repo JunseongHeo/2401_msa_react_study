@@ -37,9 +37,9 @@ function App() {
             <Route path='/jun/create' element={<JunCreate />}/>
             <Route path='/jun/update/:junId' element={<JunUpdate />}/>
             <Route path='/scm' element={<Scm />}/>
-            <Route path='/scm/:id' element={<ScmView />}/>
+            <Route path='/scm/:scmId' element={<ScmView />}/>
             <Route path='/scm/create' element={<ScmCreate />}/>
-            <Route path='/scm/update/:id' element={<ScmUpdate />}/>
+            <Route path='/scm/update/:scmId' element={<ScmUpdate />}/>
             <Route path='/nam' element={<Nam />}/>
             <Route path='/nam/:namId' element={<NamView />}/>
             <Route path='/nam/create' element={<NamCreate />}/>

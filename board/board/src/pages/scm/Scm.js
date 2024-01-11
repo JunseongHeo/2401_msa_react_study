@@ -10,7 +10,7 @@ import ScmHeader from '../../components/ScmHeader';
 function GetData() {
     const [data, setData] = useState({});
     useEffect(() => {
-        axios.get('http://localhost:8080/api/boards').then((response) => {
+        axios.get('http://localhost:8080/api/boardscm').then((response) => {
             setData(response.data);
         })
     }, []);

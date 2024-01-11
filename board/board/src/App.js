@@ -27,7 +27,6 @@ function App() {
           <Navbar/>
           <Routes>
             <Route exact path='/' element={<Home />}/>
-            <Route path='/station'/>
             <Route path='/voc' element={<Voc />}/>
             <Route path='/voc/:vocId' element={<VocView />}/>
             <Route path='/voc/create' element={<VocCreate />}/>

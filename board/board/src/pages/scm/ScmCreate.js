@@ -8,7 +8,7 @@ const HandleCreateSubmit = async({body}) => {
         'Content-Type': 'application/json'
     }
 
-    const response = await axios.post('http://localhost:8080/api/boards', body, {headers: headers}).then((response) => {
+    const response = await axios.post('http://localhost:8080/api/boardscm', body, {headers: headers}).then((response) => {
         console.log('status : '+response.status);
         if(response.status === 200) {
             alert("저장되었습니다");

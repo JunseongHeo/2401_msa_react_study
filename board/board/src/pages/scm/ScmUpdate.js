@@ -16,7 +16,7 @@ const HandleUpdateSubmit = async(uid) => {
         'Content-Type': 'application/json'
     }
 
-    const response = await axios.put('http://localhost:8080/api/boards/'+uid, body, {headers: headers}).then((response) => {
+    const response = await axios.put('http://localhost:8080/api/boardscm/'+uid, body, {headers: headers}).then((response) => {
         console.log('status : '+response.status);
         if(response.status === 200) {
             alert("수정되었습니다");
@@ -27,13 +27,13 @@ const HandleUpdateSubmit = async(uid) => {
     });
 }
 
-function GetData(id) {
+function GetData(scmId) {
     const [data, setData] = useState({});
     const [title, setTitle] = useState();
     const [content, setContent] = useState();
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/boards/'+id).then((response)=> {
+        axios.get('http://localhost:8080/api/boardscm/'+scmId).then((response)=> {
             setTitle(response.data.title);
             setContent(response.data.content);
             setData(response.data);
@@ -74,8 +74,8 @@ function GetData(id) {
 }
 
 function ScmUpdate() {
-    const {id} = useParams();
-    const item = GetData(id);
+    const {scmId} = useParams();
+    const item = GetData(scmId);
 
     return (<>
         <div>

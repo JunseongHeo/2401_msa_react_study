@@ -6,7 +6,7 @@ import './ScmView.css'
 
 function ScmDelete(props) {
     if(window.confirm("삭제하시겠습니까?")) {
-        axios.delete('http://localhost:8080/api/boards/'+props).then((response)=> {
+        axios.delete('http://localhost:8080/api/boardscm/'+props).then((response)=> {
             if(response.status === 200) {
                 alert("삭제되었습니다.");
                 window.location.href = "/scm"
@@ -20,7 +20,7 @@ function GetData(scmId) {
     const [data, setData] = useState({});
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/boards/'+scmId).then((response)=> {
+        axios.get('http://localhost:8080/api/boardscm/'+scmId).then((response)=> {
             setData(response.data);
         })
     }, []);

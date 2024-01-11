@@ -19,6 +19,10 @@ import Nam from './pages/nam/Nam';
 import NamView from './pages/nam/NamView';
 import NamCreate from "./pages/nam/NamCreate";
 import NamUpdate from "./pages/nam/NamUpdate";
+import SB from './pages/sb/SB'
+import SBView from './pages/sb/SBView'
+import SBCreate from "./pages/sb/SBCreate";
+import SBUpdate from "./pages/sb/SBUpdate";
 
 function App() {
   return (
@@ -44,6 +48,10 @@ function App() {
             <Route path='/nam/:namId' element={<NamView />}/>
             <Route path='/nam/create' element={<NamCreate />}/>
             <Route path='/nam/update/:namId' element={<NamUpdate />}/>
+            <Route path='/sb' element={<SB />}/>
+            <Route path='/sb/:sbId' element={<SBView />}/>
+            <Route path='/sb/create' element={<SBCreate />}/>
+            <Route path='/sb/update/:sbId' element={<SBUpdate />}/>
           </Routes>
         </Router>
       </>

@@ -1,0 +1,30 @@
+.sb-view-wrapper {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.sb-view-go-list-btn {
+    border: 0;
+    padding: 10px;
+    background-color: #ffd9d9;
+}
+
+.sb-view-row {
+    margin: 10px 0;
+    display: flex;
+}
+
+.sb-view-row>label:first-child {
+    margin: 10px 0;
+    width: 30%;
+    font-weight: bold;
+}
+
+.sb-view-row>*:nth-child(2) {
+    margin: 10px 0;
+    width: 70%;
+}
+
+.sb-footer {
+    text-align: center;
+}

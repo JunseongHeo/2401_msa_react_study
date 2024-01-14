@@ -16,7 +16,7 @@ const HandleUpdateSubmit = async(uid) => {
         'Content-Type': 'application/json'
     }
 
-    const response = await axios.put('http://localhost:8080/api/junboards/'+uid, body, {headers: headers}).then((response) => {
+    const response = await axios.put('/api/junboards/'+uid, body, {headers: headers}).then((response) => {
         console.log('status : '+response.status);
         if(response.status === 200) {
             alert("수정되었습니다");
@@ -33,7 +33,7 @@ function GetData(junId) {
     const [content, setContent] = useState();
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/junboards/'+junId).then((response)=> {
+        axios.get('/api/junboards/'+junId).then((response)=> {
             setTitle(response.data.title);
             setContent(response.data.content);
             setData(response.data);

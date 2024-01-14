@@ -10,7 +10,7 @@ import JunHeader from '../../components/JunHeader';
 function GetData() {
     const [data, setData] = useState({});
     useEffect(() => {
-        axios.get('http://localhost:8080/api/junboards').then((response) => {
+        axios.get('/api/junboards').then((response) => {
             setData(response.data);
         })
     }, []);

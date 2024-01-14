@@ -6,7 +6,7 @@ import './JunView.css'
 
 function JunDelete(props) {
     if(window.confirm("삭제하시겠습니까?")) {
-        axios.delete('http://localhost:8080/api/junboards/'+props).then((response)=> {
+        axios.delete('/api/junboards/'+props).then((response)=> {
             if(response.status === 200) {
                 alert("삭제되었습니다.");
                 window.location.href = "/jun"
@@ -20,7 +20,7 @@ function GetData(junId) {
     const [data, setData] = useState({});
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/junboards/'+junId).then((response)=> {
+        axios.get('/api/junboards/'+junId).then((response)=> {
             setData(response.data);
         })
     }, []);

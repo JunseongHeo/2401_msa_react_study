@@ -2,6 +2,8 @@ package com.board.boardback.controller;
 
 import com.board.boardback.model.BoardScm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +25,10 @@ public class BoardScmController {
 
     // list all boards
     @GetMapping("/boardscm")
-    public List<BoardScm> listAllBoards() {
-        return boardScmService.listAllBoards();
+    public ResponseEntity<Page<BoardScm>> geBoardList(Pageable pageable) {
+
+        Page<BoardScm> list = boardScmService.listAllBoards(pageable);
+        return ResponseEntity.ok(list);
     }
 
     // get board by id

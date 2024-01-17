@@ -6,10 +6,10 @@ import './NamView.css'
 
 function NamDelete(props) {
     if(window.confirm("삭제하시겠습니까?")) {
-        axios.delete('http://localhost:8080/api/boards_nam/'+props).then((response)=> {
+        axios.delete(`${process.env.REACT_APP_BOARD_API}`+'/boards_nam'+props).then((response)=> {
             if(response.status === 200) {
                 alert("삭제되었습니다.");
-                window.location.href = "/nam"
+                window.location.href = "/nam";
             };
         })
     }
@@ -20,7 +20,7 @@ function GetData(namId) {
     const [data, setData] = useState({});
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/boards_nam/'+namId).then((response)=> {
+        axios.get(`${process.env.REACT_APP_BOARD_API}`+'/boards_nam'+namId).then((response)=> {
             setData(response.data);
         })
     }, []);
@@ -61,16 +61,19 @@ function NamView() {
             {item}
         </div>
         <div className="nam-footer">
+            <Link to={`/nam`}>
+                <button className="nam-view-go-list-btn">목록</button>
+            </Link>
             <Link to={`/nam/update/${namId}`}>
-                <button align="right" className="nam-view-go-list-btn">
+                <button align="right" className="nam-go-create-btn">
                     수정
                 </button>
             </Link>
-                <button align="right" className="nam-view-go-list-btn" onClick={(e)=>{NamDelete(namId, e)}}>
-                    삭제
-                </button>
+            <button align="right" className="nam-view-go-list-btn" onClick={(e)=>{NamDelete(namId, e)}}>
+                삭제
+            </button>
         </div>
-   </> );
+    </> );
 }
 
 export default NamView;

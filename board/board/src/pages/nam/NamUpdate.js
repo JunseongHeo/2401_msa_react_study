@@ -16,7 +16,7 @@ const HandleUpdateSubmit = async(uid) => {
         'Content-Type': 'application/json'
     }
 
-    const response = await axios.put('http://localhost:8080/api/boards_nam/'+uid, body, {headers: headers}).then((response) => {
+    const response = await axios.put(`${process.env.REACT_APP_BOARD_API}`+'/boards_nam'+uid, body, {headers: headers}).then((response) => {
         console.log('status : '+response.status);
         if(response.status === 200) {
             alert("수정되었습니다");
@@ -33,7 +33,7 @@ function GetData(namId) {
     const [content, setContent] = useState();
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/boards/'+namId).then((response)=> {
+        axios.get(`${process.env.REACT_APP_BOARD_API}`+'/boards_nam'+namId).then((response)=> {
             setTitle(response.data.title);
             setContent(response.data.content);
             setData(response.data);
@@ -82,7 +82,7 @@ function NamUpdate() {
             {item}
         </div>
 
-   </> );
+    </> );
 }
 
 export default NamUpdate;

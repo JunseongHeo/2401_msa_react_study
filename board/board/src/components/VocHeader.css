@@ -5,3 +5,6 @@
     border-spacing: 0;
     display: block;
 }
+.right {
+    float: right;
+}

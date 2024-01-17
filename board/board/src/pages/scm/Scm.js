@@ -6,12 +6,13 @@ import CommonTable from '../../components/table/CommonTable';
 import CommonTableColumn from '../../components/table/CommonTableColumn';
 import CommonTableRow from '../../components/table/CommonTableRow';
 import ScmHeader from '../../components/ScmHeader';
+import Paging from '../../pages/scm/ScmPagination';
 
 function GetData() {
     const [data, setData] = useState({});
     useEffect(() => {
         axios.get('http://localhost:8080/api/boardscm').then((response) => {
-            setData(response.data);
+            setData(response.data.content);
         })
     }, []);
 
@@ -39,6 +40,7 @@ function Scm() {
         <CommonTable headersName={['글번호', '제목', '등록일', '작성자']}>
             {item}
         </CommonTable>
+        <Paging page={1} count={item.length}/>
     </>);
 }
 

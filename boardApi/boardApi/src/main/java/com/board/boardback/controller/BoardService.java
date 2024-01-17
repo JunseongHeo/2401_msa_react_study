@@ -4,14 +4,14 @@ import com.board.boardback.exception.ResourceNotFoundException;
 import com.board.boardback.model.Board;
 import com.board.boardback.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 public class BoardService {
@@ -27,8 +27,8 @@ public class BoardService {
     }
 
     // list all boards
-    public List<Board> listAllBoards() {
-        return boardRepository.findAll();
+    public Page<Board> listAllBoards(Pageable pageable) {
+        return boardRepository.findAllCount(pageable);
     }
 
     // get board by id

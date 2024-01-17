@@ -4,6 +4,8 @@ import com.board.boardback.exception.ResourceNotFoundException;
 import com.board.boardback.model.BoardScm;
 import com.board.boardback.repository.BoardScmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,8 +28,8 @@ public class BoardScmService {
     }
 
     // list all boards
-    public List<BoardScm> listAllBoards() {
-        return boardScmRepository.findAll();
+    public Page<BoardScm> listAllBoards(Pageable pageable) {
+        return boardScmRepository.findAll(pageable);
     }
 
     // get board by id

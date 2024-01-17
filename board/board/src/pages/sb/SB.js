@@ -6,20 +6,31 @@ import CommonTable from '../../components/table/CommonTable';
 import CommonTableColumn from '../../components/table/CommonTableColumn';
 import CommonTableRow from '../../components/table/CommonTableRow';
 import SBHeader from '../../components/SBHeader';
+import SBPagination from './SBPagination';
 
 function GetData() {
     const [data, setData] = useState({});
+    const [limit, setLimit] = useState(10);
+    const [page, setPage] = useState(1);
+    const offset = (page - 1) * limit;
+
+    /*if (sessionStorage.getItem('currentPage') != '1' && sessionStorage.getItem('list') == 'Y') {
+        console.log(sessionStorage);
+        sessionStorage.removeItem('list');
+        setPage(Number(sessionStorage.getItem('currentPage')));
+    }*/
+
     useEffect(() => {
         axios.get('http://localhost:8080/api/board_sb').then((response) => {
             setData(response.data);
         })
     }, []);
 
-    const item = (Object.values(data).filter(vo => vo.deleteYn === 'N')).map((item) => (
+    const item = (Object.values(data).slice(offset, offset + limit)).map((item) => (
         <CommonTableRow key={item.uid}>
             <CommonTableColumn>{item.uid}</CommonTableColumn>
             <CommonTableColumn>
-                <Link to={`/sb/${item.uid}`}>
+                <Link to={`/sb/${item.uid}`} onClick={() => {sessionStorage.setItem('list','Y')}}>
                     {item.title}
                 </Link>
             </CommonTableColumn>
@@ -28,17 +39,28 @@ function GetData() {
         </CommonTableRow>
     ));
 
-    return item;
+    return (<>
+        <CommonTable headersName={['글번호', '제목', '등록일', '작성자']}>
+            {item}
+        </CommonTable>
+        <footer>
+            <SBPagination
+                total={Object.values(data).length}
+                limit={limit}
+                page={page}
+                setPage={setPage}
+            />
+        </footer>
+    </>);
 }
 
 function SB() {
+
     const item = GetData();
 
     return (<>
         <SBHeader></SBHeader>
-        <CommonTable headersName={['글번호', '제목', '등록일', '작성자']}>
-            {item}
-        </CommonTable>
+        {item}
     </>);
 }
 

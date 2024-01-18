@@ -1,28 +1,32 @@
 import styled from "styled-components";
 
-function SBPagination({ total, limit, page, setPage }) {
+function SBPagination({ total, limit, page, setPage, pageSection }) {
     const numPages = Math.ceil(total / limit);
+    const startPage = ( pageSection * 10 ) - 9;
+    const endPage = ( pageSection * 10 ) < numPages ? ( pageSection * 10 ) : numPages;
+    const numArr = total == 0 ? 0 : endPage - startPage + 1 < 10 ? endPage - startPage + 1 : 10;
 
     return (
         <Nav>
-            <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
+            <Button onClick={() => setPage(startPage - 1)} disabled={startPage === 1}>
                 &lt;
             </Button>
-            {Array(numPages)
+            {Array(numArr)
                 .fill()
                 .map((_, i) => (
                     <Button
-                        key={i + 1}
+                        key={startPage + i}
                         onClick={() => {
-                            // sessionStorage.setItem('currentPage', i + 1);
-                            setPage(i + 1);
+                            sessionStorage.setItem('currentPage', startPage + i);
+                            setPage(startPage + i);
                         }}
-                        aria-current={page === i + 1 ? "page" : undefined}
+                        aria-current={page === startPage + i? "page" : undefined}
                     >
-                        {i + 1}
+                        {startPage + i}
                     </Button>
-                ))}
-            <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
+                ))
+            }
+            <Button onClick={() => setPage(endPage + 1)} disabled={endPage === numPages}>
                 &gt;
             </Button>
         </Nav>

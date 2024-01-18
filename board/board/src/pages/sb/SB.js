@@ -13,17 +13,18 @@ function GetData() {
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
-
-    /*if (sessionStorage.getItem('currentPage') != '1' && sessionStorage.getItem('list') == 'Y') {
-        console.log(sessionStorage);
-        sessionStorage.removeItem('list');
-        setPage(Number(sessionStorage.getItem('currentPage')));
-    }*/
+    const pageSection = Math.ceil(page / limit);
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/board_sb').then((response) => {
             setData(response.data);
+            console.log("axios: " + page);
         })
+        if (sessionStorage.getItem('currentPage') != '1' && sessionStorage.getItem('list') == 'Y') {
+            console.log(sessionStorage);
+            sessionStorage.removeItem('list');
+            setPage(Number(sessionStorage.getItem('currentPage')));
+        }
     }, []);
 
     const item = (Object.values(data).slice(offset, offset + limit)).map((item) => (
@@ -49,6 +50,7 @@ function GetData() {
                 limit={limit}
                 page={page}
                 setPage={setPage}
+                pageSection={pageSection}
             />
         </footer>
     </>);

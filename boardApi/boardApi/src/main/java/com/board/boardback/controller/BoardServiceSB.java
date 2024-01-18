@@ -1,7 +1,6 @@
 package com.board.boardback.controller;
 
 import com.board.boardback.exception.ResourceNotFoundException;
-import com.board.boardback.model.Board;
 import com.board.boardback.model.BoardSB;
 import com.board.boardback.repository.BoardRepositorySB;
 import org.springframework.beans.factory.annotation.Autowired;

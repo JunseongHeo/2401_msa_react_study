@@ -5,18 +5,21 @@ import {Link} from "react-router-dom";
 import CommonTable from '../../components/table/CommonTable';
 import CommonTableColumn from '../../components/table/CommonTableColumn';
 import CommonTableRow from '../../components/table/CommonTableRow';
-import NamHeader from '../../components/NamHeader';
+import NamHeader from '../../components/nam/NamHeader';
+import NamPaging from './NamPaging';
 
 function GetData() {
     const [data, setData] = useState({});
     useEffect(() => {
-        axios.get('http://localhost:8080/api/boards_nam').then((response) => {
-            setData(response.data);
+        // 'http://localhost:8080/nam/boards_nam'
+        axios.get(`${process.env.REACT_APP_BOARD_API}`+'/boards_nam').then((response) => {
+            setData(response.data.data);
+            console.log(response.data);
         })
     }, []);
 
-    console.log(Object.values(data));
-    const item = (Object.values(data).filter(vo => vo.deleteYn === 'N')).map((item) => (
+    //.filter(vo => vo.deleteYn === 'N')
+    const item = (Object.values(data)).map((item) => (
         <CommonTableRow key={item.uid}>
             <CommonTableColumn>{item.uid}</CommonTableColumn>
             <CommonTableColumn>
@@ -40,6 +43,7 @@ function Nam() {
         <CommonTable headersName={['글번호', '제목', '등록일', '작성자']}>
             {item}
         </CommonTable>
+        <NamPaging></NamPaging>
     </>);
 }
 

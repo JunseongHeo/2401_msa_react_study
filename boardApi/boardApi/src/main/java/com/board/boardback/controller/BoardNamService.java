@@ -4,6 +4,8 @@ import com.board.boardback.exception.ResourceNotFoundException;
 import com.board.boardback.model.BoardNam;
 import com.board.boardback.repository.BoardNamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,10 +27,19 @@ public class BoardNamService {
         return boardNamRepository.save(board);
     }
 
-    // list all boards
-    public List<BoardNam> listAllBoards() {
-        return boardNamRepository.findAll();
+    // list all
+//    public List<BoardNam> listAllBoards(Pageable pageable) {
+//        return boardNamRepository.findAll();
+//    }
+
+    // list all with paging
+    public Page<BoardNam> listAllBoards(Pageable pageable) {
+//        Page<BoardNam> pageResult = boardNamRepository.findAllBoardNam(pageable);
+
+        return boardNamRepository.findAllBoardNam(pageable);
     }
+
+
 
     // get board by id
     public ResponseEntity<BoardNam> getBoardById(@PathVariable Integer id) {

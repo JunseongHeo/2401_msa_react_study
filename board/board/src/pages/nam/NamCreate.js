@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import './NamView.css';
 
@@ -8,7 +9,7 @@ const HandleCreateSubmit = async({body}) => {
         'Content-Type': 'application/json'
     }
 
-    const response = await axios.post('http://localhost:8080/api/boards_nam', body, {headers: headers}).then((response) => {
+    const response = await axios.post(`${process.env.REACT_APP_BOARD_API}`+'/boards_nam', body, {headers: headers}).then((response) => {
         console.log('status : '+response.status);
         if(response.status === 200) {
             alert("저장되었습니다");
@@ -45,7 +46,10 @@ function NamCreate() {
                 <label>작성자</label>
                 <input onChange={(event) => setWriter(event.target.value)}></input>
             </div>
-            <button className="nam-view-go-list-btn" onClick={() => HandleCreateSubmit({body})}>등록</button>
+            <button className="nam-submit-btn" onClick={() => HandleCreateSubmit({body})}>등록</button>
+            <Link to={`/nam`}>
+                <button className="nam-view-go-list-btn">취소</button>
+            </Link>
         </div>
     </>);
 

@@ -78,4 +78,7 @@ public class BoardNam {
     public void setDeleteYn(String deleteYn) {
         this.deleteYn = deleteYn;
     }
+
 }
+
+

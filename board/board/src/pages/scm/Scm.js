@@ -7,14 +7,27 @@ import CommonTableColumn from '../../components/table/CommonTableColumn';
 import CommonTableRow from '../../components/table/CommonTableRow';
 import ScmHeader from '../../components/ScmHeader';
 import Paging from '../../pages/scm/ScmPagination';
+import {useLocation} from "react-router";
 
-function GetData() {
+function Scm() {
     const [data, setData] = useState({});
+    const [tot, setTot] = useState({});
+    const [pageable, setPageable] = useState({});
+    const location = useLocation();
+    let search = null;
+    if(!location.search) {
+        search = "?page=0&size=1"
+    } else {
+        search = location.search; // 쿼리스트링
+    }
+
     useEffect(() => {
-        axios.get('http://localhost:8080/api/boardscm').then((response) => {
+        axios.get('http://localhost:8080/api/boardscm'+search).then((response) => {
             setData(response.data.content);
+            setTot(response.data.totalElements);
+            setPageable(response.data.pageable);
         })
-    }, []);
+    }, [search]);
 
     const item = (Object.values(data).filter(vo => vo.deleteYn === 'N')).map((item) => (
         <CommonTableRow key={item.uid}>
@@ -29,18 +42,12 @@ function GetData() {
         </CommonTableRow>
     ));
 
-    return item;
-}
-
-function Scm() {
-    const item = GetData();
-
     return (<>
         <ScmHeader></ScmHeader>
         <CommonTable headersName={['글번호', '제목', '등록일', '작성자']}>
             {item}
         </CommonTable>
-        <Paging page={1} count={item.length}/>
+        <Paging page={pageable.pageNumber+1} count={tot}/>
     </>);
 }
 

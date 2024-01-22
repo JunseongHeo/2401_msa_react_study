@@ -1,17 +1,18 @@
-import React from "react";
-import './ScmPagination.css';
+
 import Pagination from "react-js-pagination";
+import './ScmPagination.css';
+import {useNavigate} from "react-router";
 
-const Paging = ({page, count, setPage}) => {
-
-    const handlePageChange = (page) => {
-        setPage(page);
-    };
-
+const Paging = ({page, count}) => {
+    const navigate = useNavigate();
+    const size = 1; // 기본값
+    const handlePageChange = (e) => {
+        navigate(`/scm?page=`+(e-1)+`&size=`+size);
+    }
     return (
         <Pagination
             activePage={page}
-            itemsCountPerPage={2}
+            itemsCountPerPage={size}
             totalItemsCount={count}
             pageRangeDisplayed={5}
             prevPageText={"‹"}

@@ -13,19 +13,22 @@ function Scm() {
     const [data, setData] = useState({});
     const [tot, setTot] = useState({});
     const [pageable, setPageable] = useState({});
+
+    // location : 현재 브라우저 열려있는 페이지의 위치 정보가 담긴 브라우저 내장객체
+    // useLocation() : 이동한 페이지에서 값을 가져올때 사용 ex)location.state.키
     const location = useLocation();
     let search = null;
     if(!location.search) {
-        search = "?page=0&size=1"
+        search = "?page=0&size=1" // 기본값
     } else {
-        search = location.search; // 쿼리스트링
+        search = location.search; // location.search : 쿼리스트링 정보를 담은 프로퍼티
     }
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/boardscm'+search).then((response) => {
             setData(response.data.content);
             setTot(response.data.totalElements);
-            setPageable(response.data.pageable);
+            setPageable(response.data.pageable); // 컨트롤러에서 보낸 pageable
         })
     }, [search]);
 
@@ -33,7 +36,7 @@ function Scm() {
         <CommonTableRow key={item.uid}>
             <CommonTableColumn>{item.uid}</CommonTableColumn>
             <CommonTableColumn>
-                <Link to={`/scm/${item.uid}`}>
+                <Link to={`/scm/${item.uid}`+search}>
                     {item.title}
                 </Link>
             </CommonTableColumn>
@@ -47,7 +50,7 @@ function Scm() {
         <CommonTable headersName={['글번호', '제목', '등록일', '작성자']}>
             {item}
         </CommonTable>
-        <Paging page={pageable.pageNumber+1} count={tot}/>
+        <Paging page={pageable.pageNumber+1} tot={tot}/>
     </>);
 }
 

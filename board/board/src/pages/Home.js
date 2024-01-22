@@ -4,8 +4,8 @@ class Home extends Component{
 
     render() {
         return (
-            <div>
-                <h3>Home</h3>
+            <div style={{textAlign: "center"}}>
+                <h1>Home</h1>
             </div>
         )
     }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import './ScmView.css';
+import {Link} from "react-router-dom";
 
 const HandleCreateSubmit = async({body}) => {
     const headers = {
@@ -47,6 +48,11 @@ function ScmCreate() {
             </div>
             <div className="scm-footer">
                 <button className="scm-view-go-list-btn" onClick={() => HandleCreateSubmit({body})}>등록</button>
+                <Link to={`/scm`}>
+                    <button className="scm-view-go-list-btn">
+                        목록
+                    </button>
+                </Link>
             </div>
         </div>
     </>);

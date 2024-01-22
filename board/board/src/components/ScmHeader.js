@@ -7,7 +7,7 @@ const ScmHeader = props => {
 
     return (
         <div className="scm-header">
-            <h2 aligh="center">목록</h2>
+            <h2 aligh="center">SCM 게시판</h2>
             <div className="btn-right">
                 <Link to={`/scm/create`}>
                     <button className="scm-view-go-list-btn">

@@ -3,6 +3,7 @@ import axios from "axios";
 import {Link, useParams} from 'react-router-dom';
 
 import './ScmView.css'
+import {useLocation} from "react-router";
 
 function ScmDelete(props) {
     if(window.confirm("삭제하시겠습니까?")) {
@@ -56,11 +57,18 @@ function GetData(scmId) {
 function ScmView() {
     const {scmId} = useParams();
     const item = GetData(scmId);
+    const location = useLocation();
+
     return (<>
         <div>
             {item}
         </div>
         <div className="scm-footer">
+            <Link to={`/scm`+location.search}>
+                <button className="scm-view-go-list-btn">
+                    목록
+                </button>
+            </Link>
             <Link to={`/scm/update/${scmId}`}>
                 <button className="scm-view-go-list-btn">
                     수정

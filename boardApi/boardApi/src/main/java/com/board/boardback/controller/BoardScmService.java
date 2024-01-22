@@ -29,7 +29,7 @@ public class BoardScmService {
 
     // list all boards
     public Page<BoardScm> listAllBoards(Pageable pageable) {
-        return boardScmRepository.findAll(pageable);
+        return boardScmRepository.findAllByOrderByUidDesc(pageable);
     }
 
     // get board by id

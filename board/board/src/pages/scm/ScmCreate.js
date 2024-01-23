@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import axios from 'axios';
 
 import './ScmView.css';
@@ -9,7 +9,7 @@ const HandleCreateSubmit = async({body}) => {
         'Content-Type': 'application/json'
     }
 
-    const response = await axios.post('http://localhost:8080/api/boardscm', body, {headers: headers}).then((response) => {
+    await axios.post('http://localhost:8080/api/boardscm', body, {headers: headers}).then((response) => {
         console.log('status : '+response.status);
         if(response.status === 200) {
             alert("저장되었습니다");

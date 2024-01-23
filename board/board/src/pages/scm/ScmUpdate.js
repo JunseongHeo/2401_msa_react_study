@@ -3,8 +3,9 @@ import axios from "axios";
 import { useParams } from 'react-router-dom';
 
 import './ScmView.css'
+import {useLocation} from "react-router";
 
-const HandleUpdateSubmit = async(uid) => {
+const HandleUpdateSubmit = async(uid,paging) => {
 
     const body = {
         uid : uid,
@@ -16,11 +17,11 @@ const HandleUpdateSubmit = async(uid) => {
         'Content-Type': 'application/json'
     }
 
-    const response = await axios.put('http://localhost:8080/api/boardscm/'+uid, body, {headers: headers}).then((response) => {
+    await axios.put('http://localhost:8080/api/boardscm/'+uid, body, {headers: headers}).then((response) => {
         console.log('status : '+response.status);
         if(response.status === 200) {
             alert("수정되었습니다");
-            window.location.href = "/scm";
+            window.location.href = "/scm"+paging;
         }
     }).catch((error) => {
         console.log('error : '+error);
@@ -31,6 +32,7 @@ function GetData(scmId) {
     const [data, setData] = useState({});
     const [title, setTitle] = useState();
     const [content, setContent] = useState();
+    const location = useLocation();
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/boardscm/'+scmId).then((response)=> {
@@ -63,7 +65,7 @@ function GetData(scmId) {
                 }}></textarea>
             </div>
             <div className="scm-footer">
-                <button align="right" className="scm-view-go-list-btn" onClick={() => HandleUpdateSubmit(data.uid)}>
+                <button align="right" className="scm-view-go-list-btn" onClick={() => HandleUpdateSubmit(data.uid, location.state.paging)}>
                     수정완료
                 </button>
             </div>

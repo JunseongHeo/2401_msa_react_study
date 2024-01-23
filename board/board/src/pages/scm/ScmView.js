@@ -5,12 +5,12 @@ import {Link, useParams} from 'react-router-dom';
 import './ScmView.css'
 import {useLocation} from "react-router";
 
-function ScmDelete(props) {
+function ScmDelete(scmId,paging) {
     if(window.confirm("삭제하시겠습니까?")) {
-        axios.delete('http://localhost:8080/api/boardscm/'+props).then((response)=> {
+        axios.delete('http://localhost:8080/api/boardscm/'+scmId).then((response)=> {
             if(response.status === 200) {
                 alert("삭제되었습니다.");
-                window.location.href = "/scm"
+                window.location.href = "/scm"+paging
             };
         })
     }
@@ -64,17 +64,17 @@ function ScmView() {
             {item}
         </div>
         <div className="scm-footer">
-            <Link to={`/scm`+location.search}>
+            <Link to={`/scm`+location.state.paging}>
                 <button className="scm-view-go-list-btn">
                     목록
                 </button>
             </Link>
-            <Link to={`/scm/update/${scmId}`}>
+            <Link to={`/scm/update/${scmId}`} state={{paging:location.state.paging}}>
                 <button className="scm-view-go-list-btn">
                     수정
                 </button>
             </Link>
-                <button className="scm-view-go-list-btn" onClick={(e)=>{ScmDelete(scmId, e)}}>
+                <button className="scm-view-go-list-btn" onClick={(e)=>{ScmDelete(scmId,location.state.paging, e)}}>
                     삭제
                 </button>
         </div>

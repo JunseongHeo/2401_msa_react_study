@@ -8,7 +8,13 @@ function SBPagination({ total, limit, page, setPage, pageSection }) {
 
     return (
         <Nav>
-            <Button onClick={() => setPage(startPage - 1)} disabled={startPage === 1}>
+            <Button
+                onClick={() => {
+                    sessionStorage.setItem('currentPage', startPage - 1);
+                    setPage(startPage - 1);
+                }}
+                disabled={startPage === 1}
+            >
                 &lt;
             </Button>
             {Array(numArr)
@@ -26,7 +32,13 @@ function SBPagination({ total, limit, page, setPage, pageSection }) {
                     </Button>
                 ))
             }
-            <Button onClick={() => setPage(endPage + 1)} disabled={endPage === numPages}>
+            <Button
+                onClick={() => {
+                    sessionStorage.setItem('currentPage', endPage + 1);
+                    setPage(endPage + 1);
+                }}
+                disabled={endPage === numPages}
+            >
                 &gt;
             </Button>
         </Nav>

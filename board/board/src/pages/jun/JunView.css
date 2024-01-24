@@ -4,9 +4,10 @@
 }
 
 .jun-view-go-list-btn {
-    border: 0;
     padding: 10px;
-    background-color: #ffd9d9;
+    background-color: #282c34;
+    color: white;
+    margin: 10px;
 }
 
 .jun-view-row {

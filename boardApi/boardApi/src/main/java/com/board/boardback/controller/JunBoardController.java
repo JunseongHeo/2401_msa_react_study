@@ -2,6 +2,7 @@ package com.board.boardback.controller;
 
 import com.board.boardback.model.JunBoard;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class JunBoardController {
 
     // list paging boards
     @GetMapping("/junboards")
-    public List<JunBoard> listAllBoards(@PageableDefault(page=0, size=5) Pageable pageable) {
+    public Page<JunBoard> listAllBoards(@PageableDefault(page=0, size=5) Pageable pageable) {
         return junBoardService.findPagingByUidDesc(pageable);
     }
 

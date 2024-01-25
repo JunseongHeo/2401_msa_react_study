@@ -4,6 +4,7 @@ import com.board.boardback.exception.ResourceNotFoundException;
 import com.board.boardback.model.JunBoard;
 import com.board.boardback.repository.JunBoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,8 @@ public class JunBoardService {
     }
 
     // list paging boards
-    public List<JunBoard> findPagingByUidDesc(@PageableDefault(size=5, page=0) Pageable pageable) {
-        return junBoardRepository.findAllByOrderByUidDesc(pageable).getContent();
+    public Page<JunBoard> findPagingByUidDesc(Pageable pageable) {
+        return junBoardRepository.findAllByOrderByUidDesc(pageable);
     }
 
     // get board by id

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 public class BoardNamService {
@@ -27,19 +26,10 @@ public class BoardNamService {
         return boardNamRepository.save(board);
     }
 
-    // list all
-//    public List<BoardNam> listAllBoards(Pageable pageable) {
-//        return boardNamRepository.findAll();
-//    }
-
     // list all with paging
     public Page<BoardNam> listAllBoards(Pageable pageable) {
-//        Page<BoardNam> pageResult = boardNamRepository.findAllBoardNam(pageable);
-
-        return boardNamRepository.findAllBoardNam(pageable);
+        return boardNamRepository.findAllByOrderByUidDesc(pageable);
     }
-
-
 
     // get board by id
     public ResponseEntity<BoardNam> getBoardById(@PathVariable Integer id) {

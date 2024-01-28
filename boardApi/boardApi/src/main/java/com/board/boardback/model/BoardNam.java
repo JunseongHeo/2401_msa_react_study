@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "board_nam")
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamicInsert
+@Where(clause = "delete_yn = 'N'") // 엔티티 조회시 일괄적인 Where 조건추가
 public class BoardNam {
 
     @Id

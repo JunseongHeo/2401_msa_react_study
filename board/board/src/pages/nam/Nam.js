@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import CommonTable from '../../components/table/CommonTable';
 import CommonTableColumn from '../../components/table/CommonTableColumn';
 import CommonTableRow from '../../components/table/CommonTableRow';
-import NamHeader from '../../components/NamHeader';
+import NamHeader from '../../components/nam/NamHeader';
 import NamPaging from './NamPaging';
 import {useLocation} from "react-router";
 

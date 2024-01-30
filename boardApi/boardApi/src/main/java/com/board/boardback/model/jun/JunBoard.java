@@ -1,4 +1,4 @@
-package com.board.boardback.model;
+package com.board.boardback.model.jun;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 
 @Entity
-@Table(name = "jun_board")
+@Table(name = "board_jun")
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamicInsert

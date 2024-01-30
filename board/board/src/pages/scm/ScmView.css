@@ -3,6 +3,11 @@
     margin: 0 auto;
 }
 
+.scm-login-wrapper {
+    width: 20%;
+    margin: 0 auto;
+}
+
 .scm-view-go-list-btn {
     padding: 10px;
     background-color: #282c34;
@@ -10,7 +15,16 @@
     margin: 10px;
 }
 
+.scm-red-btn {
+    padding: 10px;
+    background-color: #ff0077;
+    border-color: #ff0077;
+    color: white;
+    margin: 10px;
+}
+
 .btn-right {
+    width: 90%;
     text-align: right;
     margin-bottom: 10px;
 }

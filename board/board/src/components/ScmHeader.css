@@ -5,3 +5,8 @@
     border-spacing: 0;
     display: block;
 }
+
+.login-info {
+    text-align: right;
+    margin-bottom: 10px;
+}

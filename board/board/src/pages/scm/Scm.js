@@ -10,8 +10,8 @@ import Paging from '../../pages/scm/ScmPagination';
 import {useLocation} from "react-router";
 
 function Scm() {
-    const [data, setData] = useState({});
-    const [tot, setTot] = useState({});
+    const [data, setData] = useState({}); // {} : object
+    const [tot, setTot] = useState(0);
     const [pageable, setPageable] = useState({});
 
     // location : 현재 브라우저 열려있는 페이지의 위치 정보가 담긴 브라우저 내장객체
@@ -25,7 +25,7 @@ function Scm() {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/boardscm'+search).then((response) => {
+        axios.get('/boardscm/scm'+search).then((response) => {
             setData(response.data.content);
             setTot(response.data.totalElements);
             setPageable(response.data.pageable); // 컨트롤러에서 보낸 pageable
@@ -34,6 +34,7 @@ function Scm() {
 
   /**  const item = (Object.values(data).filter(vo => vo.deleteYn === 'N')).map((item)
     * 필터 vo에 추가 */
+
     const item = (Object.values(data)).map((item) => (
         <CommonTableRow key={item.uid}>
             <CommonTableColumn>{item.uid}</CommonTableColumn>
@@ -49,6 +50,13 @@ function Scm() {
 
     return (<>
         <ScmHeader></ScmHeader>
+        <div className="btn-right">
+            <Link to={`/scm/create`}>
+                <button className="scm-view-go-list-btn">
+                    게시글 작성
+                </button>
+            </Link>
+        </div>
         <CommonTable headersName={['글번호', '제목', '등록일', '작성자']}>
             {item}
         </CommonTable>

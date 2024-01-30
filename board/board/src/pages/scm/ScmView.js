@@ -7,7 +7,7 @@ import {useLocation} from "react-router";
 
 function ScmDelete(scmId,paging) {
     if(window.confirm("삭제하시겠습니까?")) {
-        axios.delete('http://localhost:8080/api/boardscm/'+scmId).then((response)=> {
+        axios.delete('/boardscm/scm/'+scmId).then((response)=> {
             if(response.status === 200) {
                 alert("삭제되었습니다.");
                 window.location.href = "/scm"+paging
@@ -21,7 +21,7 @@ function GetData(scmId) {
     const [data, setData] = useState({});
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/boardscm/'+scmId).then((response)=> {
+        axios.get('/boardscm/scm/'+scmId).then((response)=> {
             setData(response.data);
         })
     }, []);

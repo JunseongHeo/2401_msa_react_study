@@ -17,7 +17,7 @@ const HandleUpdateSubmit = async(uid,paging) => {
         'Content-Type': 'application/json'
     }
 
-    await axios.put('http://localhost:8080/api/boardscm/'+uid, body, {headers: headers}).then((response) => {
+    await axios.put('/boardscm/scm/'+uid, body, {headers: headers}).then((response) => {
         console.log('status : '+response.status);
         if(response.status === 200) {
             alert("수정되었습니다");
@@ -35,7 +35,7 @@ function GetData(scmId) {
     const location = useLocation();
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/boardscm/'+scmId).then((response)=> {
+        axios.get('/boardscm/scm/'+scmId).then((response)=> {
             setTitle(response.data.title);
             setContent(response.data.content);
             setData(response.data);

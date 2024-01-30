@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
 import './ScmView.css';
@@ -25,6 +25,10 @@ function ScmCreate() {
     const [content, setContent] = useState('');
     const [writer, setWriter] = useState('');
 
+    useEffect(() => {
+        setWriter(JSON.parse(sessionStorage.getItem("loginId")));
+    }, []);
+
     const body = {
         title : title,
         content : content,
@@ -44,7 +48,7 @@ function ScmCreate() {
             </div>
             <div className="scm-view-row">
                 <label>작성자</label>
-                <input onChange={(event) => setWriter(event.target.value)}></input>
+                <input value={writer} disabled={true}></input>
             </div>
             <div className="scm-footer">
                 <button className="scm-view-go-list-btn" onClick={() => HandleCreateSubmit({body})}>등록</button>

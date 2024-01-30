@@ -13,7 +13,6 @@ import org.hibernate.annotations.DynamicInsert;
 public class MemberScm {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private String userId;
 

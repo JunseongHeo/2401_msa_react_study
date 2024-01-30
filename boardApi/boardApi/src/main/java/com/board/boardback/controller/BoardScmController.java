@@ -1,51 +1,45 @@
 package com.board.boardback.controller;
 
 import com.board.boardback.model.BoardScm;
-import com.board.boardback.model.JunBoard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/boardscm")
 public class BoardScmController {
 
     @Autowired
     private BoardScmService boardScmService;
 
     // create board rest api
-    @PostMapping("/boardscm")
+    @PostMapping("/scm")
     public BoardScm createBoard(@RequestBody BoardScm board) {
         return boardScmService.createBoard(board);
     }
 
     // list all boards
-    @GetMapping("/boardscm")
-    public ResponseEntity<Page<BoardScm>> getBoardList(Pageable pageable) {
-        Page<BoardScm> list = boardScmService.listAllBoards(pageable);
-        return ResponseEntity.ok(list);
+    @GetMapping("/scm")
+    public Page<BoardScm> getBoardList(Pageable pageable) {
+        return boardScmService.listAllBoards(pageable);
     }
 
     // get board by id
-    @GetMapping("/boardscm/{id}")
+    @GetMapping("/scm/{id}")
     public ResponseEntity<BoardScm> getBoardById(@PathVariable Integer id) {
         return boardScmService.getBoardById(id);
     }
 
     // update board
-    @PutMapping("/boardscm/{id}")
+    @PutMapping("/scm/{id}")
     public ResponseEntity<BoardScm> updateBoard(@PathVariable Integer id, @RequestBody BoardScm boardDetails) {
         return boardScmService.updateBoard(id, boardDetails);
     }
 
     // delete board
-    @DeleteMapping("/boardscm/{id}")
+    @DeleteMapping("/scm/{id}")
     public ResponseEntity<BoardScm> deleteBoard(@PathVariable Integer id) {
         return boardScmService.deleteBoard(id);
     }

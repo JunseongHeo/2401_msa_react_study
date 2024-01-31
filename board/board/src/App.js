@@ -11,6 +11,8 @@ import Jun from "./pages/jun/Jun";
 import JunView from './pages/jun/JunView'
 import JunCreate from "./pages/jun/JunCreate";
 import JunUpdate from "./pages/jun/JunUpdate";
+import JunLogIn from "./pages/jun/JunLogIn";
+import JunCreateMember from "./pages/jun/JunCreateMember";
 import Scm from './pages/scm/Scm'
 import ScmView from './pages/scm/ScmView'
 import ScmCreate from "./pages/scm/ScmCreate";
@@ -40,6 +42,8 @@ function App() {
             <Route path='/jun/:junId' element={<JunView />}/>
             <Route path='/jun/create' element={<JunCreate />}/>
             <Route path='/jun/update/:junId' element={<JunUpdate />}/>
+            <Route path='/jun/logIn' element={<JunLogIn />}/>
+            <Route path='/jun/createMember' element={<JunCreateMember />}/>
             <Route path='/scm' element={<Scm />}/>
             <Route path='/scm/:scmId' element={<ScmView />}/>
             <Route path='/scm/create' element={<ScmCreate />}/>

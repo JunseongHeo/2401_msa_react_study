@@ -10,7 +10,7 @@ import org.hibernate.annotations.DynamicInsert;
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamicInsert
-public class JunBoard {
+public class BoardJun {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

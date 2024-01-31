@@ -1,11 +1,11 @@
 package com.board.boardback.repository.jun;
 
-import com.board.boardback.model.jun.JunBoard;
+import com.board.boardback.model.jun.BoardJun;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface JunBoardRepository extends JpaRepository<JunBoard, Integer> {
+public interface BoardRepositoryJun extends JpaRepository<BoardJun, Integer> {
 
-    Page<JunBoard> findAllByOrderByUidDesc(Pageable pageable);
+    Page<BoardJun> findAllByOrderByUidDesc(Pageable pageable);
 }

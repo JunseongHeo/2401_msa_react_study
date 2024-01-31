@@ -13,7 +13,7 @@ function Jun() {
     const location = useLocation();
     const [data, setData] = useState({});
     const [pageInfo, setPageInfo] = useState({});
-    const [pageTotalCount, setPageTotalCount] = useState({});
+    const [pageTotalCount, setPageTotalCount] = useState(0);
 
     let search = null;
 

@@ -1,12 +1,11 @@
-package com.board.boardback.controller;
+package com.board.boardback.service;
 
 import com.board.boardback.exception.ResourceNotFoundException;
-import com.board.boardback.model.JunBoard;
-import com.board.boardback.repository.JunBoardRepository;
+import com.board.boardback.model.jun.BoardJun;
+import com.board.boardback.repository.jun.BoardRepositoryJun;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,57 +15,57 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class JunBoardService {
+public class BoardServiceJun {
 
     @Autowired
-    private JunBoardRepository junBoardRepository;
+    private BoardRepositoryJun boardRepositoryJun;
 
     // create board rest api
-    public JunBoard createBoard(@RequestBody JunBoard junBoard) {
+    public BoardJun createBoard(@RequestBody BoardJun boardJun) {
         LocalDateTime localDate = LocalDateTime.now();
-        junBoard.setInsertTime(localDate.toString());
-        return junBoardRepository.save(junBoard);
+        boardJun.setInsertTime(localDate.toString());
+        return boardRepositoryJun.save(boardJun);
     }
 
     // list all boards
-    public List<JunBoard> listAllBoards() {
-        return junBoardRepository.findAll();
+    public List<BoardJun> listAllBoards() {
+        return boardRepositoryJun.findAll();
     }
 
     // list paging boards
-    public Page<JunBoard> findPagingByUidDesc(Pageable pageable) {
-        return junBoardRepository.findAllByOrderByUidDesc(pageable);
+    public Page<BoardJun> findPagingByUidDesc(Pageable pageable) {
+        return boardRepositoryJun.findAllByOrderByUidDesc(pageable);
     }
 
     // get board by id
-    public ResponseEntity<JunBoard> getBoardById(@PathVariable Integer id) {
-        JunBoard junBoard = junBoardRepository.findById(id)
+    public ResponseEntity<BoardJun> getBoardById(@PathVariable Integer id) {
+        BoardJun boardJun = boardRepositoryJun.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Board not exist with id :" + id));
 
-        return ResponseEntity.ok(junBoard);
+        return ResponseEntity.ok(boardJun);
     }
 
     // update board
-    public ResponseEntity<JunBoard> updateBoard(@PathVariable Integer id, @RequestBody JunBoard boardDetails) {
+    public ResponseEntity<BoardJun> updateBoard(@PathVariable Integer id, @RequestBody BoardJun boardDetails) {
 
-        JunBoard board = junBoardRepository.findById(id)
+        BoardJun board = boardRepositoryJun.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Board not exist with id : " + id));
 
         board.setTitle(boardDetails.getTitle());
         board.setContent(boardDetails.getContent());
 
-        JunBoard updateBoard = junBoardRepository.save(board);
+        BoardJun updateBoard = boardRepositoryJun.save(board);
 
         return ResponseEntity.ok(updateBoard);
     }
 
     // delete board
-    public ResponseEntity<JunBoard> deleteBoard(@PathVariable Integer id) {
-        JunBoard board = junBoardRepository.findById(id)
+    public ResponseEntity<BoardJun> deleteBoard(@PathVariable Integer id) {
+        BoardJun board = boardRepositoryJun.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Board not exist with id : " + id));
 
         board.setDeleteYn("Y");
-        JunBoard updateBoard = junBoardRepository.save(board);
+        BoardJun updateBoard = boardRepositoryJun.save(board);
         return ResponseEntity.ok(updateBoard);
     }
 }

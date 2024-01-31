@@ -14,6 +14,11 @@ const VocHeader = props => {
                         게시글 작성
                     </button>
                 </Link>
+                <Link to={`/jun/logIn`}>
+                    <button align="right" className="jun-view-go-list-btn">
+                        로그인
+                    </button>
+                </Link>
             </div>
         </div>
     )

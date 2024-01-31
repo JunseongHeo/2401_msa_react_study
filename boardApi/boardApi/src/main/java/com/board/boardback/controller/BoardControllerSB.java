@@ -1,6 +1,7 @@
 package com.board.boardback.controller;
 
 import com.board.boardback.model.BoardSB;
+import com.board.boardback.model.SBMember;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,9 @@ public class BoardControllerSB {
 
     @Autowired
     private BoardServiceSB boardServiceSB;
+
+    @Autowired
+    private SBMemberService sbMemberService;
 
     // create board rest api
     @PostMapping("/board_sb")
@@ -44,4 +48,13 @@ public class BoardControllerSB {
     public ResponseEntity<BoardSB> deleteBoard(@PathVariable Integer id) {
         return boardServiceSB.deleteBoard(id);
     }
+
+    // create member rest api
+    @PostMapping("/member_sb")
+    public SBMember createMember(@RequestBody SBMember sbMember) { return sbMemberService.createMember(sbMember); }
+
+    // get member by id
+    @PostMapping("/member_sb/{id}")
+    public ResponseEntity<SBMember> getMemberById(@PathVariable String id) { return sbMemberService.getMemberById(id); }
+
 }

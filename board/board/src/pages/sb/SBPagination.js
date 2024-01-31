@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import {useNavigate} from "react-router";
 
-function SBPagination({ total, limit, page, setPage, pageSection }) {
+function SBPagination({ total, limit, page, setPage, pageSection, search }) {
+    const navigate = useNavigate();
     const numPages = Math.ceil(total / limit);
     const startPage = ( pageSection * 10 ) - 9;
     const endPage = ( pageSection * 10 ) < numPages ? ( pageSection * 10 ) : numPages;
@@ -12,8 +14,9 @@ function SBPagination({ total, limit, page, setPage, pageSection }) {
                 onClick={() => {
                     sessionStorage.setItem('currentPage', startPage - 1);
                     setPage(startPage - 1);
+                    navigate('/sb?page='+ (startPage - 1));
                 }}
-                disabled={startPage === 1}
+                disabled={startPage == 1}
             >
                 &lt;
             </Button>
@@ -25,8 +28,9 @@ function SBPagination({ total, limit, page, setPage, pageSection }) {
                         onClick={() => {
                             sessionStorage.setItem('currentPage', startPage + i);
                             setPage(startPage + i);
+                            navigate('/sb?page='+ (startPage + i));
                         }}
-                        aria-current={page === startPage + i? "page" : undefined}
+                        aria-current={page == startPage + i? "page" : undefined}
                     >
                         {startPage + i}
                     </Button>
@@ -36,8 +40,9 @@ function SBPagination({ total, limit, page, setPage, pageSection }) {
                 onClick={() => {
                     sessionStorage.setItem('currentPage', endPage + 1);
                     setPage(endPage + 1);
+                    navigate('/sb?page='+ (endPage + 1));
                 }}
-                disabled={endPage === numPages}
+                disabled={endPage == numPages}
             >
                 &gt;
             </Button>

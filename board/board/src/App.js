@@ -57,6 +57,8 @@ function App() {
             <Route path='/nam/:namId' element={<NamView />}/>
             <Route path='/nam/create' element={<NamCreate />}/>
             <Route path='/nam/update/:namId' element={<NamUpdate />}/>
+            <Route path='/sbLogin' element={<SBLogin />}/>
+            <Route path='/sbSignUp' element={<SBSignUp />}/>
             <Route path='/sb' element={<SB />}/>
             <Route path='/sb/:sbId' element={<SBView />}/>
             <Route path='/sb/create' element={<SBCreate />}/>

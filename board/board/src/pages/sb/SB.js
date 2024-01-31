@@ -7,6 +7,7 @@ import CommonTableColumn from '../../components/table/CommonTableColumn';
 import CommonTableRow from '../../components/table/CommonTableRow';
 import SBHeader from '../../components/SBHeader';
 import SBPagination from './SBPagination';
+import {useLocation} from "react-router";
 
 function GetData() {
     const [data, setData] = useState({});
@@ -14,6 +15,16 @@ function GetData() {
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
     const pageSection = Math.ceil(page / limit);
+
+    let search = null;
+    const location = useLocation();
+    if (!location.search) {
+        search = "?page=0"
+    } else {
+        search = location.search;
+        console.log("page:"+search.substr(search.indexOf('=')+1));
+    }
+
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/board_sb').then((response) => {
@@ -25,7 +36,12 @@ function GetData() {
             sessionStorage.removeItem('list');
             setPage(Number(sessionStorage.getItem('currentPage')));
         }
-    }, []);
+        if (!location.search) {
+            setPage(1);
+        } else {
+            setPage(search.substr(search.indexOf('=')+1));
+        }
+    }, [search]);
 
     const item = (Object.values(data).slice(offset, offset + limit)).map((item) => (
         <CommonTableRow key={item.uid}>
@@ -51,6 +67,7 @@ function GetData() {
                 page={page}
                 setPage={setPage}
                 pageSection={pageSection}
+                search={search}
             />
         </footer>
     </>);

@@ -15,6 +15,12 @@
     margin: 10px;
 }
 
+button:disabled {
+    background-color: dimgrey;
+    color: linen;
+    opacity: 1;
+}
+
 .scm-red-btn {
     padding: 10px;
     background-color: #ff0077;

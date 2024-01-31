@@ -17,7 +17,7 @@ const HandleUpdateSubmit = async(uid,paging) => {
         'Content-Type': 'application/json'
     }
 
-    await axios.put('/boardscm/scm/'+uid, body, {headers: headers}).then((response) => {
+    await axios.put('/boardscm/update/'+uid, body, {headers: headers}).then((response) => {
         console.log('status : '+response.status);
         if(response.status === 200) {
             alert("수정되었습니다");
@@ -35,12 +35,12 @@ function GetData(scmId) {
     const location = useLocation();
 
     useEffect(() => {
-        axios.get('/boardscm/scm/'+scmId).then((response)=> {
+        axios.get('/boardscm/read/'+scmId).then((response)=> {
             setTitle(response.data.title);
             setContent(response.data.content);
             setData(response.data);
         })
-    }, []);
+    }, [scmId]);
 
     const item = (<>
         <h2 align="center">게시글 상세정보</h2>

@@ -4,11 +4,11 @@ import {Link} from 'react-router-dom';
 
 import './ScmView.css'
 
-const HandleLogin = async(userId,userPw) => {
+const HandleLogin = async(loginId,userPw) => {
 
-    await axios.get('/memberscm/scm/'+userId).then((response) => {
+    await axios.get('/memberscm/read/'+loginId).then((response) => {
         if(response.data !== null && response.data.userPw === userPw) {
-            sessionStorage.setItem("loginId", JSON.stringify(userId));
+            sessionStorage.setItem("loginId", JSON.stringify(loginId));
             window.location.href = "/scm";
         } else {
             alert("아이디 비밀번호를 다시 확인해주세요.");
@@ -19,7 +19,7 @@ const HandleLogin = async(userId,userPw) => {
 }
 
 function ScmLogin() {
-    const [userId, setUserId] = useState('');
+    const [loginId, setLoginId] = useState('');
     const [userPw, setUserPw] = useState('');
 
     return (<>
@@ -28,8 +28,8 @@ function ScmLogin() {
             <div className="scm-login-wrapper">
                 <div className="scm-view-row">
                     <label>아이디</label>
-                    <input id="userId" onChange={event => {
-                        setUserId(event.target.value)}}></input>
+                    <input id="loginId" onChange={event => {
+                        setLoginId(event.target.value)}}></input>
                 </div>
                 <div className="scm-view-row">
                     <label>비밀번호</label>
@@ -37,7 +37,7 @@ function ScmLogin() {
                         setUserPw(event.target.value)}}></input>
                 </div>
                 <div className="scm-footer">
-                    <button align="right" className="scm-view-go-list-btn" onClick={() => HandleLogin(userId,userPw)}>
+                    <button align="right" className="scm-view-go-list-btn" onClick={() => HandleLogin(loginId,userPw)}>
                         로그인
                     </button>
                     <Link to={`/scm/member`}>

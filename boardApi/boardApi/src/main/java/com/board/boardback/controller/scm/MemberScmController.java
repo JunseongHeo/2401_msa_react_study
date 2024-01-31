@@ -14,14 +14,14 @@ public class MemberScmController {
     private MemberScmService memberScmService;
 
     // create member rest api
-    @PostMapping("/scm")
+    @PostMapping("/create")
     public MemberScm createMember(@RequestBody MemberScm member) {
         return memberScmService.createMember(member);
     }
 
     // get member by id
-    @GetMapping("/scm/{id}")
-    public Optional<MemberScm> getMemberById(@PathVariable String id) {
-        return memberScmService.getMemberById(id);
+    @GetMapping("/read/{loginId}")
+    public Optional<MemberScm> getMemberByLoginId(@PathVariable String loginId) {
+        return memberScmService.getMemberByLoginId(loginId);
     }
 }

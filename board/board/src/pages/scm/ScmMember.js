@@ -9,7 +9,7 @@ const HandleSignUp = async({body}) => {
         'Content-Type': 'application/json'
     }
 
-    await axios.post('/memberscm/scm', body, {headers: headers}).then((response) => {
+    await axios.post('/memberscm/create', body, {headers: headers}).then((response) => {
         console.log('status : '+response.status);
         if(response.status === 200) {
             alert("가입되었습니다");
@@ -20,9 +20,9 @@ const HandleSignUp = async({body}) => {
     });
 }
 
-const HandleSignCheck = async(userId,setSignUpCk) => {
+const HandleSignCheck = async(loginId,setSignUpCk) => {
 
-    await axios.get('/memberscm/scm/'+userId).then((response) => {
+    await axios.get('/memberscm/read/'+loginId).then((response) => {
         if(response.data !== null) {
             alert("이미 사용중인 아이디 입니다.");
         } else {
@@ -36,13 +36,15 @@ const HandleSignCheck = async(userId,setSignUpCk) => {
 }
 
 function ScmMember() {
-    const [userId, setUserId] = useState('');
+    const [loginId, setLoginId] = useState('');
     const [userPw, setUserPw] = useState('');
+    const [userName, setUserName] = useState('');
     const [signUpCk, setSignUpCk] = useState(true);
 
     const body = {
-        userId : userId,
-        userPw : userPw
+        loginId : loginId,
+        userPw : userPw,
+        userName : userName
     }
 
     return (<>
@@ -51,9 +53,9 @@ function ScmMember() {
             <div className="scm-login-wrapper">
                 <div className="scm-view-row">
                     <label>아이디</label>
-                    <input id="userId" onChange={event => {
-                        setUserId(event.target.value)}}></input>
-                    <button align="right" className="scm-red-btn" onClick={() => HandleSignCheck(userId,setSignUpCk)}>
+                    <input id="loginId" onChange={event => {
+                        setLoginId(event.target.value)}}></input>
+                    <button align="right" className="scm-red-btn" onClick={() => HandleSignCheck(loginId,setSignUpCk)}>
                         중복 검사
                     </button>
                 </div>
@@ -61,6 +63,11 @@ function ScmMember() {
                     <label>비밀번호</label>
                     <input id="userPw" onChange={event => {
                         setUserPw(event.target.value)}}></input>
+                </div>
+                <div className="scm-view-row">
+                    <label>이름</label>
+                    <input id="userName" onChange={event => {
+                        setUserName(event.target.value)}}></input>
                 </div>
                 <div className="scm-footer">
                     <button id="signUp" align="right" className="scm-view-go-list-btn" onClick={() => HandleSignUp({body})} disabled={signUpCk}>

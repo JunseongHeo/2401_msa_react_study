@@ -23,8 +23,8 @@ public class MemberScmService {
         return memberScmRepository.save(member);
     }
 
-    // get board by id
-    public Optional<MemberScm> getMemberById(@PathVariable String id) {
-        return memberScmRepository.findById(id);
+    // Optional : null 처리
+    public Optional<MemberScm> getMemberByLoginId(@PathVariable String loginId) {
+        return memberScmRepository.findByLoginId(loginId);
     }
 }

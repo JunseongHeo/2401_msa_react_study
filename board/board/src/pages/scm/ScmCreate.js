@@ -9,7 +9,7 @@ const HandleCreateSubmit = async({body}) => {
         'Content-Type': 'application/json'
     }
 
-    await axios.post('/boardscm/scm', body, {headers: headers}).then((response) => {
+    await axios.post('/boardscm/create', body, {headers: headers}).then((response) => {
         console.log('status : '+response.status);
         if(response.status === 200) {
             alert("저장되었습니다");

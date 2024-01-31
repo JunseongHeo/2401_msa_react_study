@@ -7,7 +7,7 @@ import {useLocation} from "react-router";
 
 function ScmDelete(scmId,paging) {
     if(window.confirm("삭제하시겠습니까?")) {
-        axios.delete('/boardscm/scm/'+scmId).then((response)=> {
+        axios.delete('/boardscm/delete/'+scmId).then((response)=> {
             if(response.status === 200) {
                 alert("삭제되었습니다.");
                 window.location.href = "/scm"+paging
@@ -23,11 +23,11 @@ function GetData(scmId) {
     const location = useLocation();
 
     useEffect(() => {
-        axios.get('/boardscm/scm/'+scmId).then((response)=> {
+        axios.get('/boardscm/read/'+scmId).then((response)=> {
             setData(response.data);
             setUserCk(JSON.parse(sessionStorage.getItem("loginId")) === response.data.writer ? false : true);
         })
-    }, []);
+    }, [scmId]);
 
     const item =  (<>
         <h2 align="center">게시글 상세정보</h2>

@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import CommonTable from '../../components/table/CommonTable';
 import CommonTableColumn from '../../components/table/CommonTableColumn';
 import CommonTableRow from '../../components/table/CommonTableRow';
-import ScmHeader from '../../components/ScmHeader';
+import ScmHeader from '../../components/scm/ScmHeader';
 import Paging from '../../pages/scm/ScmPagination';
 import {useLocation} from "react-router";
 
@@ -25,7 +25,7 @@ function Scm() {
     }
 
     useEffect(() => {
-        axios.get('/boardscm/scm'+search).then((response) => {
+        axios.get('/boardscm/read'+search).then((response) => {
             setData(response.data.content);
             setTot(response.data.totalElements);
             setPageable(response.data.pageable); // 컨트롤러에서 보낸 pageable

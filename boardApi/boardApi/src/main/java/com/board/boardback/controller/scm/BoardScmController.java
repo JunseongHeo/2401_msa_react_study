@@ -15,31 +15,31 @@ public class BoardScmController {
     private BoardScmService boardScmService;
 
     // create board rest api
-    @PostMapping("/scm")
+    @PostMapping("/create")
     public BoardScm createBoard(@RequestBody BoardScm board) {
         return boardScmService.createBoard(board);
     }
 
     // list all boards
-    @GetMapping("/scm")
+    @GetMapping("/read")
     public Page<BoardScm> getBoardList(Pageable pageable) {
         return boardScmService.listAllBoards(pageable);
     }
 
     // get board by id
-    @GetMapping("/scm/{id}")
+    @GetMapping("/read/{id}")
     public ResponseEntity<BoardScm> getBoardById(@PathVariable Integer id) {
         return boardScmService.getBoardById(id);
     }
 
     // update board
-    @PutMapping("/scm/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<BoardScm> updateBoard(@PathVariable Integer id, @RequestBody BoardScm boardDetails) {
         return boardScmService.updateBoard(id, boardDetails);
     }
 
     // delete board
-    @DeleteMapping("/scm/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<BoardScm> deleteBoard(@PathVariable Integer id) {
         return boardScmService.deleteBoard(id);
     }

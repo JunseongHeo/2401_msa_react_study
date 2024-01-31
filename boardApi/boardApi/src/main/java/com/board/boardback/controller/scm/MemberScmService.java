@@ -1,7 +1,7 @@
-package com.board.boardback.controller;
+package com.board.boardback.controller.scm;
 
-import com.board.boardback.model.MemberScm;
-import com.board.boardback.repository.MemberScmRepository;
+import com.board.boardback.model.scm.MemberScm;
+import com.board.boardback.repository.scm.MemberScmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;

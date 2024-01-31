@@ -1,6 +1,6 @@
-package com.board.boardback.controller;
+package com.board.boardback.controller.scm;
 
-import com.board.boardback.model.BoardScm;
+import com.board.boardback.model.scm.BoardScm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

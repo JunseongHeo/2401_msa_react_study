@@ -1,6 +1,6 @@
-package com.board.boardback.controller;
+package com.board.boardback.controller.scm;
 
-import com.board.boardback.model.MemberScm;
+import com.board.boardback.model.scm.MemberScm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

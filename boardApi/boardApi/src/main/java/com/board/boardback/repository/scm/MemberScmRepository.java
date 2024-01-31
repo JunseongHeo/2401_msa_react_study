@@ -1,9 +1,6 @@
-package com.board.boardback.repository;
+package com.board.boardback.repository.scm;
 
-import com.board.boardback.model.BoardScm;
-import com.board.boardback.model.MemberScm;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.board.boardback.model.scm.MemberScm;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

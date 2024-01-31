@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/memberjun")
 public class MemberControllerJun {
 
     @Autowired
     private MemberServiceJun memberServiceJun;
 
     // create board rest api
-    @PostMapping("/createjun")
+    @PostMapping("/create")
     public MemberJun createMember(@RequestBody MemberJun memberJun) {
         return memberServiceJun.createMember(memberJun);
     }

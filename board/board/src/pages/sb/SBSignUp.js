@@ -20,7 +20,7 @@ const DuplicateIDCheck = async({ member }) => {
 }
 
 const HandleCreateIDSubmit = async({ member, navigate }) => {
-    if (member.user_id.trim().length == 0) {
+    if (member.login_id.trim().length == 0) {
         alert("ID를 입력하세요.");
         return;
     }
@@ -55,7 +55,7 @@ function SBSignUp() {
     const navigate = useNavigate();
 
     const member = {
-        user_id : id,
+        login_id : id,
         user_pw : pw
     }
 

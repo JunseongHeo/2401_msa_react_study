@@ -6,7 +6,7 @@ import CommonTable from '../../components/table/CommonTable';
 import CommonTableColumn from '../../components/table/CommonTableColumn';
 import CommonTableRow from '../../components/table/CommonTableRow';
 import ScmHeader from '../../components/scm/ScmHeader';
-import Paging from '../../pages/scm/ScmPagination';
+import Paging from '../../components/scm/ScmPagination';
 import {useLocation} from "react-router";
 
 function Scm() {

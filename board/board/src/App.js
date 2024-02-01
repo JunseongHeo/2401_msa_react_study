@@ -25,6 +25,8 @@ import NamView from './pages/nam/NamView';
 import NamCreate from "./pages/nam/NamCreate";
 import NamUpdate from "./pages/nam/NamUpdate";
 import SB from './pages/sb/SB'
+import SBLogin from './pages/sb/SBLogin'
+import SBSignUp from './pages/sb/SBSignUp'
 import SBView from './pages/sb/SBView'
 import SBCreate from "./pages/sb/SBCreate";
 import SBUpdate from "./pages/sb/SBUpdate";

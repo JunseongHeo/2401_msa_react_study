@@ -1,11 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
 import './ScmHeader.css';
+import axios from "axios";
+
+const HandleLogout = async() => {
+    sessionStorage.removeItem("loginId");
+    window.location.href = "/scm/login";
+}
 
 function ScmHeader() {
-    const [userId, setUserId] = useState('');
+    const [loginId, setLoginId] = useState('');
     useEffect(() => {
-        setUserId(JSON.parse(sessionStorage.getItem("loginId")));
+        var sessionId = JSON.parse(sessionStorage.getItem("loginId"));
+        if (sessionId != null) {
+            setLoginId(sessionId);
+        } else {
+            window.location.href = "/scm/login";
+        }
     }, []);
 
     return (
@@ -14,12 +24,10 @@ function ScmHeader() {
                 <h2 aligh="center">SCM 게시판</h2>
 
                 <div className="login-info">
-                    <span>{userId}</span>님 안녕하세요
-                    <Link to={`/scm/login`}>
-                        <button className="scm-red-btn">
-                            로그아웃
-                        </button>
-                    </Link>
+                    <span>{loginId}</span>님 안녕하세요
+                    <button className="scm-red-btn" onClick={() => HandleLogout()}>
+                        로그아웃
+                    </button>
                 </div>
             </div>
        </>

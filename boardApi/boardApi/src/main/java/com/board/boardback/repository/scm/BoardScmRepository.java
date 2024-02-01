@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BoardScmRepository extends JpaRepository<BoardScm, Integer> {
-    Page<BoardScm> findAllByOrderByUidDesc(Pageable pageable);
+    Page<BoardScm> findAllByOrderByUidDesc(Pageable pageable); // findAllOrderByUidDesc : error
 }

@@ -1,12 +1,17 @@
 import axios from "axios";
 
 import './ScmView.css'
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 const HandleSignUp = async({body}) => {
 
     const headers = {
         'Content-Type': 'application/json'
+    }
+
+    if (body.loginId == '' || body.userPw == '') {
+        alert("아이디와 비밀번호를 모두 입력해주세요");
+        return;
     }
 
     await axios.post('/memberscm/create', body, {headers: headers}).then((response) => {
@@ -21,7 +26,6 @@ const HandleSignUp = async({body}) => {
 }
 
 const HandleSignCheck = async(loginId,setSignUpCk) => {
-
     await axios.get('/memberscm/read/'+loginId).then((response) => {
         if(response.data !== null) {
             alert("이미 사용중인 아이디 입니다.");
@@ -32,7 +36,6 @@ const HandleSignCheck = async(loginId,setSignUpCk) => {
     }).catch((error) => {
         console.log('error : '+error);
     });
-
 }
 
 function ScmMember() {
@@ -46,6 +49,10 @@ function ScmMember() {
         userPw : userPw,
         userName : userName
     }
+
+    useEffect(() => {
+        setSignUpCk(true);
+    }, [loginId]);
 
     return (<>
         <div>

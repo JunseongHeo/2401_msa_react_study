@@ -13,8 +13,8 @@ import org.hibernate.annotations.DynamicInsert;
 public class SBMember {
 
     @Id
-    @Column(name = "login_id")
-    private String login_id;
+    @Column(name = "user_id")
+    private String user_id;
 
     @Column(name = "user_pw")
     private String user_pw;
@@ -29,12 +29,12 @@ public class SBMember {
         this.insert_time = insert_time;
     }
 
-    public String getLogin_id() {
-        return login_id;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public void setLogin_id(String login_id) {
-        this.login_id = login_id;
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getUser_pw() {

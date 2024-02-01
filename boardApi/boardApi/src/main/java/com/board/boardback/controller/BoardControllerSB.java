@@ -57,8 +57,4 @@ public class BoardControllerSB {
     @PostMapping("/member_sb/{id}")
     public ResponseEntity<SBMember> getMemberById(@PathVariable String id) { return sbMemberService.getMemberById(id); }
 
-    // login by id, pwd
-    @PostMapping("/member_sb/login")
-    public ResponseEntity<SBMember> getMemberByIdAndPwd(@RequestBody SBMember sbMember) { return sbMemberService.getMemberByIdAndPwd(sbMember); }
-
 }

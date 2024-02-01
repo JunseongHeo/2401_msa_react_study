@@ -38,14 +38,6 @@ public class SBMemberService {
         return ResponseEntity.ok(sbMember);
     }
 
-    // get member by id, pwd
-    public ResponseEntity<SBMember> getMemberByIdAndPwd(@RequestBody SBMember sbMemberDetails) {
-        SBMember sbMember = sbMemberRepository.findByLogin_idAndUser_pw(sbMemberDetails.getLogin_id(), sbMemberDetails.getUser_pw())
-                .orElseThrow(() -> new ResourceNotFoundException("Member not exist with id :" + sbMemberDetails.getLogin_id()));
-
-        return ResponseEntity.ok(sbMember);
-    }
-
     // update member
     public ResponseEntity<SBMember> updateMember(@PathVariable String id, @RequestBody SBMember sbMemberDetails) {
 

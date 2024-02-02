@@ -1,8 +1,7 @@
 package com.board.boardback.controller.nam;
 
 import com.board.boardback.model.nam.BoardNam;
-import com.board.boardback.model.nam.MemberRequestNamDto;
-import com.board.boardback.model.nam.MemberResponseNamDto;
+import com.board.boardback.model.nam.MemberNam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/nam")
 @RequiredArgsConstructor
@@ -21,8 +20,8 @@ public class BoardNamController {
 
     // login
     @PostMapping("/login_nam")
-    public MemberResponseNamDto login(@RequestBody final MemberRequestNamDto params){
-        MemberResponseNamDto entity = boardService.findBy(params);
+    public MemberNam login(@RequestBody final MemberNam params){
+        MemberNam entity = boardService.findBy(params);
         return entity;
     }
 

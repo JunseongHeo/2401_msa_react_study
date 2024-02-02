@@ -16,25 +16,39 @@ public class MemberNam {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private String userId;
+    @Column(name = "member_id")
+    private String memberId;
 
+    @Column(name = "login_id")
+    private String loginId;
     @Column(name = "user_pw")
     private String userPw;
+    @Column(name = "user_name")
+    private String userName;
 
     @Column(name = "insert_time")
     private String insertTime;
 
+    @Column(name = "update_time")
+    private String updateTime;
+
     @Column(name = "delete_yn")
     private String deleteYn;
 
-
-    public String getUserId() {
-        return userId;
+    public String getMemberId() {
+        return memberId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
+    public String getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
     }
 
     public String getUserPw() {
@@ -45,12 +59,28 @@ public class MemberNam {
         this.userPw = userPw;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public String getInsertTime() {
         return insertTime;
     }
 
     public void setInsertTime(String insertTime) {
         this.insertTime = insertTime;
+    }
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
     }
 
     public String getDeleteYn() {

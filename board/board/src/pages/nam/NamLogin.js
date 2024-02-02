@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 import './NamView.css';
 
@@ -24,16 +23,16 @@ function NamLogin() {
         console.log("PW: " + inputPw);
         axios
             .post(`${process.env.REACT_APP_BOARD_NAM}` + '/login_nam',
-                {userId: inputId, userPw: inputPw})
+                {loginId: inputId, userPw: inputPw})
             .then((res) => {
                 console.log(res);
-                console.log("res.data.userId: " , res.data.userId);
+                console.log("res.data.loginId: " , res.data.userId);
                 console.log("res.data.msg: " , res.data.msg);
-                if (res.data.userId === undefined) {
-                    console.log("====", res.data.userId);
+                if (res.data.loginId === undefined) {
+                    console.log("====", res.data.loginId);
                     alert("입력하신 ID가 일치하지 않습니다.");
-                } else if (res.data.userId === null) {
-                    console.log("====", res.data.userId);
+                } else if (res.data.loginId === null) {
+                    console.log("====", res.data.loginId);
                     alert("입력하신 ID가 일치하지 않습니다.");
                 } else if (res.data.userPw === undefined) {
                     console.log("====", res.data.userPw);
@@ -41,12 +40,13 @@ function NamLogin() {
                 } else if (res.data.userPw === null) {
                     console.log("====", res.data.userPw);
                     alert("입력하신 비밀번호가 일치하지 않습니다.");
-                }if (res.data.userId === inputId) {
+                } else if (res.data.loginId === inputId) {
                     console.log("====", "success!");
-                    sessionStorage.setItem("userId", inputId);
+                    sessionStorage.setItem("loginId", inputId);
                     sessionStorage.setItem("userPw", inputPw);
+                } else {
+                    document.location.href="/nam";
                 }
-                document.location.href="/nam";
             })
             .catch();
     };

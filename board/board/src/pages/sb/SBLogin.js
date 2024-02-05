@@ -7,15 +7,17 @@ const handleLogin = async({ member, navigate, setLoggedIn }) => {
     const headers = {
         'Content-Type': 'application/json'
     };
-    const response = await axios.post('http://localhost:8080/memberSB/member_sb/login', member, {headers: headers}).then((response) => {
+    try {
+        const response = await axios.post('http://localhost:8080/memberSB/member_sb/login', member, {headers: headers});
         console.log('status : '+response.status);
         setLoggedIn(true);
         sessionStorage.setItem('loggedIn', 'true');
         sessionStorage.setItem('login_id', member.login_id);
         navigate('/sb');
-    }).catch((error) => {
+    } catch (error) {
         console.log('error : '+error);
-    });
+        alert('로그인에 실패했습니다. ID 및 PW를 확인해주세요.');
+    }
 }
 
 const checkLoggedIn = () => {

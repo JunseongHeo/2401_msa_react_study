@@ -7,16 +7,17 @@ const DuplicateIDCheck = async({ member }) => {
     const headers = {
         'Content-Type': 'application/json'
     };
-    const response = await axios.post('http://localhost:8080/api/member_sb/'+member.user_id, member, {headers: headers}).then((response) => {
+    try {
+        const response = await axios.post('http://localhost:8080/memberSB/member_sb/'+member.login_id, member, {headers: headers});
         console.log('status : '+response.status);
         if (response.status === 200) {
             alert("이미 가입된 ID입니다.");
             return true;
         }
-    }).catch((error) => {
+    } catch (error) {
         console.log('error : '+error);
-    });
-    return false;
+        return false;
+    }
 }
 
 const HandleCreateIDSubmit = async({ member, navigate }) => {

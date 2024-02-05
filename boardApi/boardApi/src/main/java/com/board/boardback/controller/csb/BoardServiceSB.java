@@ -1,8 +1,8 @@
-package com.board.boardback.controller;
+package com.board.boardback.controller.csb;
 
 import com.board.boardback.exception.ResourceNotFoundException;
-import com.board.boardback.model.BoardSB;
-import com.board.boardback.repository.BoardRepositorySB;
+import com.board.boardback.model.csb.BoardSB;
+import com.board.boardback.repository.csb.BoardRepositorySB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

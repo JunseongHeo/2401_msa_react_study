@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
-import './NamView.css';
+import './NamLogin.css';
+import {Link} from "react-router-dom";
 
 const onClickLogin = (inputId,inputPw) => {
     console.log("click to login");
@@ -52,9 +52,8 @@ function NamLogin() {
 
     return (<>
         <h2 align="center">Sign In</h2>
-        <div className="nam-view-wrapper">
-            <div className="nam-view-row">
-                <label>ID</label>
+        <div className="nam-login-wrapper">
+            <div className="nam-login-row">
                 <input type="text"
                        className="form-control"
                        placeholder="Enter ID"
@@ -63,8 +62,7 @@ function NamLogin() {
                        onChange={HandleInputId}
                 />
             </div>
-            <div className="nam-view-row">
-                <label>PW</label>
+            <div className="nam-login-row">
                 <input type="text"
                        className="form-control"
                        placeholder="Enter Password"
@@ -73,7 +71,12 @@ function NamLogin() {
                        onChange={HandleInputPw}
                 />
             </div>
-            <button type="button" onClick={() => onClickLogin(inputId,inputPw)}>Sing In</button>
+            <button type="button" className="login-button" onClick={() => onClickLogin(inputId,inputPw)}>Sign In</button>
+            <Link to={`/nam/member`}>
+                <button className="signup-button">
+                    Sign Up
+                </button>
+            </Link>
         </div>
     </>);
 

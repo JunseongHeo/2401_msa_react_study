@@ -2,9 +2,7 @@ package com.board.boardback.controller.nam;
 
 import com.board.boardback.exception.ResourceNotFoundException;
 import com.board.boardback.model.nam.BoardNam;
-import com.board.boardback.model.nam.MemberNam;
 import com.board.boardback.repository.nam.BoardNamRepository;
-import com.board.boardback.repository.nam.MemberRepositoryNam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,20 +18,6 @@ public class BoardNamService {
 
     @Autowired
     private BoardNamRepository boardNamRepository;
-
-    @Autowired
-    private final MemberRepositoryNam memberRepository;
-
-    public BoardNamService(MemberRepositoryNam memberRepository) {
-        this.memberRepository = memberRepository;
-    }
-
-    public MemberNam findBy(final MemberNam params) {
-        MemberNam entity = memberRepository.findByLoginIdAndUserPw(params.getLoginId(), params.getUserPw());
-
-        return entity;
-    }
-
 
     // list all with paging
     public Page<BoardNam> listAllBoards(Pageable pageable) {

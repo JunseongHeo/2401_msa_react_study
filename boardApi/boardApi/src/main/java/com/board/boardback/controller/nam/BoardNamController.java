@@ -1,7 +1,6 @@
 package com.board.boardback.controller.nam;
 
 import com.board.boardback.model.nam.BoardNam;
-import com.board.boardback.model.nam.MemberNam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,13 +16,6 @@ public class BoardNamController {
 
     @Autowired
     private BoardNamService boardService;
-
-    // login
-    @PostMapping("/login_nam")
-    public MemberNam login(@RequestBody final MemberNam params){
-        MemberNam entity = boardService.findBy(params);
-        return entity;
-    }
 
     // list all boards
     @GetMapping("/boards_nam")

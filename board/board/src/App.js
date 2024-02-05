@@ -30,6 +30,9 @@ import SBSignUp from './pages/sb/SBSignUp'
 import SBView from './pages/sb/SBView'
 import SBCreate from "./pages/sb/SBCreate";
 import SBUpdate from "./pages/sb/SBUpdate";
+import Board from './pages/SH/Board'; // 추가 된 내용
+import BoardView from './pages/SH/BoardView'; // 추가 된 내용
+import Login from './pages/SH/Login';
 
 function App() {
   return (
@@ -65,6 +68,10 @@ function App() {
             <Route path='/sb/:sbId' element={<SBView />}/>
             <Route path='/sb/create' element={<SBCreate />}/>
             <Route path='/sb/update/:sbId' element={<SBUpdate />}/>
+            <Route exact path='/' element={<Home />} />
+            <Route path='/board' element={<Board/>} />
+            <Route path='/board/:bId' element={<BoardView/>} />
+            <Route path='/Login' element={<Login/>} />
           </Routes>
         </Router>
       </>

@@ -1,0 +1,30 @@
+.b-view-wrapper {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.b-view-go-list-btn {
+    border: 0;
+    padding: 10px;
+    background-color: #ffd9d9;
+}
+
+.b-view-row {
+    margin: 10px 0;
+    display: flex;
+}
+
+.b-view-row>label:first-child {
+    margin: 10px 0;
+    width: 30%;
+    font-weight: bold;
+}
+
+.b-view-row>*:nth-child(2) {
+    margin: 10px 0;
+    width: 70%;
+}
+
+.b-footer {
+    text-align: center;
+}

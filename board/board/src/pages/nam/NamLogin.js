@@ -8,7 +8,8 @@ const onClickLogin = (inputId,inputPw) => {
     console.log("ID: " + inputId);
     console.log("PW: " + inputPw);
     axios
-        .post(`${process.env.REACT_APP_BOARD_NAM}` + '/login_nam',
+        // .post(`${process.env.REACT_APP_BOARD_NAM}` + '/login_nam',
+        .post(`${process.env.REACT_APP_BOARD_NAM}` + '/membernam/read/',
             {loginId: inputId, userPw: inputPw})
         .then((res) => {
             console.log(res);

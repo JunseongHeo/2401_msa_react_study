@@ -1,4 +1,4 @@
-package com.board.boardback.model;
+package com.board.boardback.model.csb;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

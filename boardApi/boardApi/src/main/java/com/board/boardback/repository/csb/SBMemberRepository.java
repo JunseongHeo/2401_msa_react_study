@@ -1,6 +1,6 @@
-package com.board.boardback.repository;
+package com.board.boardback.repository.csb;
 
-import com.board.boardback.model.SBMember;
+import com.board.boardback.model.csb.SBMember;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

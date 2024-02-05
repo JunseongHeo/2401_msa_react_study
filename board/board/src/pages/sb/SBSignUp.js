@@ -37,7 +37,7 @@ const HandleCreateIDSubmit = async({ member, navigate }) => {
         const headers = {
             'Content-Type': 'application/json'
         };
-        const response = await axios.post('http://localhost:8080/api/member_sb', member, {headers: headers}).then((response) => {
+        const response = await axios.post('http://localhost:8080/memberSB/member_sb', member, {headers: headers}).then((response) => {
             console.log('status : '+response.status);
             if (response.status === 200) {
                 alert("회원가입 되었습니다.");

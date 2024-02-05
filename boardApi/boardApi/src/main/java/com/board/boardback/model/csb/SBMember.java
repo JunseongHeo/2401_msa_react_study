@@ -1,9 +1,10 @@
-package com.board.boardback.model;
+package com.board.boardback.model.csb;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
+import org.springframework.data.jpa.repository.Query;
 
 @Entity
 @Table(name = "member")

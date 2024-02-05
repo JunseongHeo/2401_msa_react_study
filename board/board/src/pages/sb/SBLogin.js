@@ -7,7 +7,7 @@ const handleLogin = async({ member, navigate, setLoggedIn }) => {
     const headers = {
         'Content-Type': 'application/json'
     };
-    const response = await axios.post('http://localhost:8080/api/member_sb/login', member, {headers: headers}).then((response) => {
+    const response = await axios.post('http://localhost:8080/memberSB/member_sb/login', member, {headers: headers}).then((response) => {
         console.log('status : '+response.status);
         setLoggedIn(true);
         sessionStorage.setItem('loggedIn', 'true');

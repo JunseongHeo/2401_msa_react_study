@@ -6,7 +6,7 @@ import './NamView.css'
 
 function NamDelete(props) {
     if(window.confirm("삭제하시겠습니까?")) {
-        axios.delete(`${process.env.REACT_APP_BOARD_NAM}`+'/boards_nam/'+props).then((response)=> {
+        axios.delete('/nam/boards_nam/'+props).then((response)=> {
             if(response.status === 200) {
                 alert("삭제되었습니다.");
                 window.location.href = "/nam";
@@ -20,7 +20,7 @@ function GetData(namId) {
     const [data, setData] = useState({});
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BOARD_NAM}`+'/boards_nam/'+namId).then((response)=> {
+        axios.get('/nam/boards_nam/'+namId).then((response)=> {
             setData(response.data);
         })
     }, []);

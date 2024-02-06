@@ -26,7 +26,7 @@ function Nam() {
     }
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BOARD_NAM}`+'/boards_nam'+search).then((response) => {
+        axios.get('/nam/boards_nam'+search).then((response) => {
             setData(response.data.content);
             setPageTotalCount(response.data.totalElements);
             setPageInfo(response.data.pageable);

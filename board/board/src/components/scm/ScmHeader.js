@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import './ScmHeader.css';
-import axios from "axios";
 
 const HandleLogout = async() => {
     sessionStorage.removeItem("loginId");

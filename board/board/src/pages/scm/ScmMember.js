@@ -9,7 +9,7 @@ const HandleSignUp = async({body}) => {
         'Content-Type': 'application/json'
     }
 
-    if (body.loginId == '' || body.userPw == '') {
+    if (body.loginId === '' || body.userPw === '') {
         alert("아이디와 비밀번호를 모두 입력해주세요");
         return;
     }

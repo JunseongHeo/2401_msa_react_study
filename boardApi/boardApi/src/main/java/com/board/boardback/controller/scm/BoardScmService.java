@@ -45,11 +45,12 @@ public class BoardScmService {
         BoardScm board = boardScmRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Board not exist with id : " + id));
 
+        LocalDateTime localDate = LocalDateTime.now();
         board.setTitle(boardDetails.getTitle());
         board.setContent(boardDetails.getContent());
+        board.setUpdateTime(localDate.toString());
 
         BoardScm updateBoard = boardScmRepository.save(board);
-
         return ResponseEntity.ok(updateBoard);
     }
 
@@ -58,7 +59,10 @@ public class BoardScmService {
         BoardScm board = boardScmRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Board not exist with id : " + id));
 
+        LocalDateTime localDate = LocalDateTime.now();
         board.setDeleteYn("Y");
+        board.setDeleteTime(localDate.toString());
+
         BoardScm updateBoard = boardScmRepository.save(board);
         return ResponseEntity.ok(updateBoard);
     }

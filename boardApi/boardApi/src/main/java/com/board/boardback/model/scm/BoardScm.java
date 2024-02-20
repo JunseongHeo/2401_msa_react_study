@@ -2,7 +2,9 @@ package com.board.boardback.model.scm;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.Where;
 
@@ -11,6 +13,8 @@ import org.hibernate.annotations.Where;
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamicInsert
+@Getter
+@Setter
 @Where(clause = "delete_yn = 'N'") // 엔티티 조회시 일괄적인 Where 조건추가
 public class BoardScm {
 
@@ -33,51 +37,10 @@ public class BoardScm {
     @Column(name = "delete_yn")
     private String deleteYn;
 
-    public Integer getUid() {
-        return uid;
-    }
+    @Column(name = "update_time")
+    private String updateTime;
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
+    @Column(name = "delete_time")
+    private String deleteTime;
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getWriter() {
-        return writer;
-    }
-
-    public void setWriter(String writer) {
-        this.writer = writer;
-    }
-
-    public String getInsertTime() {
-        return insertTime;
-    }
-
-    public void setInsertTime(String insertTime) {
-        this.insertTime = insertTime;
-    }
-
-    public String getDeleteYn() {
-        return deleteYn;
-    }
-
-    public void setDeleteYn(String deleteYn) {
-        this.deleteYn = deleteYn;
-    }
 }

@@ -62,8 +62,8 @@ function ScmMember() {
                     <label>아이디</label>
                     <input id="loginId" onChange={event => {
                         setLoginId(event.target.value)}}></input>
-                    <button align="right" className="scm-red-btn" onClick={() => HandleSignCheck(loginId,setSignUpCk)}>
-                        중복 검사
+                    <button className="scm-red-btn" onClick={() => HandleSignCheck(loginId,setSignUpCk)}>
+                        중복검사
                     </button>
                 </div>
                 <div className="scm-view-row">

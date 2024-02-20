@@ -10,7 +10,7 @@ const HandleUpdateSubmit = async(uid,paging) => {
     const body = {
         uid : uid,
         title : document.getElementById("title").value,
-        content : document.getElementById("content").value
+        content : document.getElementById("content").value,
     }
 
     const headers = {

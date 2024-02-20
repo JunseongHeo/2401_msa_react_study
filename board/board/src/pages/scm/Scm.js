@@ -19,7 +19,7 @@ function Scm() {
     const location = useLocation();
     let search = null;
     if(!location.search) {
-        search = "?page=0&size=3" // 기본값
+        search = "?page=0&size=8" // 기본값
     } else {
         search = location.search; // location.search : 쿼리스트링 정보를 담은 프로퍼티
     }
@@ -43,8 +43,9 @@ function Scm() {
                     {item.title}
                 </Link>
             </CommonTableColumn>
-            <CommonTableColumn>{item.insertTime}</CommonTableColumn>
             <CommonTableColumn>{item.writer}</CommonTableColumn>
+            <CommonTableColumn>{item.insertTime}</CommonTableColumn>
+            <CommonTableColumn>{item.updateTime}</CommonTableColumn>
         </CommonTableRow>
     ));
 
@@ -57,7 +58,8 @@ function Scm() {
                 </button>
             </Link>
         </div>
-        <CommonTable headersName={['글번호', '제목', '등록일', '작성자']}>
+        <CommonTable headersName={['글번호', '제목', '작성자', '등록일', '수정일']}
+                     headersWidth={['5%', '50%', '15%', '15%', '15%']}>
             {item}
         </CommonTable>
         <Paging page={pageable.pageNumber+1} tot={tot}/>

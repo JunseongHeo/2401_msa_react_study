@@ -6,6 +6,11 @@ import './ScmView.css'
 
 const HandleLogin = async(loginId,userPw) => {
 
+    if (loginId === '') {
+        alert("아이디를 입력해주세요.");
+        return;
+    }
+
     await axios.get('/memberscm/read/'+loginId).then((response) => {
         if(response.data !== null && response.data.userPw === userPw) {
             sessionStorage.setItem("loginId", JSON.stringify(loginId));

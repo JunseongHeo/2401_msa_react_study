@@ -20,14 +20,14 @@ function ScmHeader() {
     return (
         <>
             <div className="scm-header">
-                <h2 aligh="center">SCM 게시판</h2>
+                <h2>SCM 게시판</h2>
 
-                <div className="login-info">
-                    <span>{loginId}</span>님 안녕하세요
+                <span className="scm-user-wrapper">
+                    <span className="scm-user-hi">{loginId} 님 안녕하세요</span>
                     <button className="scm-red-btn" onClick={() => HandleLogout()}>
                         로그아웃
                     </button>
-                </div>
+                </span>
             </div>
        </>
     )

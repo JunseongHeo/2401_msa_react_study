@@ -9,24 +9,30 @@
 }
 
 .scm-view-go-list-btn {
-    padding: 10px;
+    padding: 7px;
     background-color: #282c34;
     color: white;
-    margin: 10px;
+    margin: 7px;
+    border-radius: 4px;
+    font-weight: bolder;
+    white-space: nowrap;
 }
 
 button:disabled {
-    background-color: dimgrey;
+    background-color: #8f8c8b;
     color: linen;
     opacity: 1;
 }
 
 .scm-red-btn {
-    padding: 10px;
+    padding: 4px;
     background-color: #ff0077;
     border-color: #ff0077;
     color: white;
-    margin: 10px;
+    margin: 7px;
+    border-radius: 4px;
+    font-weight: bolder;
+    white-space: nowrap;
 }
 
 .btn-right {

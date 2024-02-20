@@ -19,7 +19,7 @@ function Scm() {
     const location = useLocation();
     let search = null;
     if(!location.search) {
-        search = "?page=0&size=8" // 기본값
+        search = "?page=0&size=10" // 기본값
     } else {
         search = location.search; // location.search : 쿼리스트링 정보를 담은 프로퍼티
     }

@@ -35,6 +35,7 @@ function Scm() {
   /**  const item = (Object.values(data).filter(vo => vo.deleteYn === 'N')).map((item)
     * 필터 vo에 추가 */
 
+    /* children : 컴포넌트의 여는 태그와 닫는 태그 사이의 내용 */
     const item = (Object.values(data)).map((item) => (
         <CommonTableRow key={item.uid}>
             <CommonTableColumn>{item.uid}</CommonTableColumn>

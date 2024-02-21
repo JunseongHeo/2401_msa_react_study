@@ -6,7 +6,7 @@
     display: block;
 }
 
-.scm-header h2{
+.scm-header h2 {
     display:inline-block;
     text-align: center;
     margin-left: 170px;
@@ -20,9 +20,4 @@
     color: #ff0077;
     font-weight: bolder;
     font-size: small;
-}
-
-.login-info {
-    text-align: right;
-    margin-bottom: 10px;
 }

@@ -4,6 +4,7 @@ import com.board.boardback.model.nam.MemberNam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Optional;
 
 @RestController
@@ -20,8 +21,11 @@ public class MemberNamController {
     }
 
     // get member by id
-    @GetMapping("/read/{loginId}")
-    public Optional<MemberNam> getMemberByLoginId(@PathVariable String loginId) {
+    @GetMapping("/read/{loginId}/{userPw}")
+    public Optional<MemberNam> getMemberByLoginId(@PathVariable String loginId, @PathVariable String userPw) {
+        System.out.println("loginId : " + loginId);
+        System.out.println("userPw : " + userPw);
+
         return memberService.getMemberByLoginId(loginId);
     }
 }

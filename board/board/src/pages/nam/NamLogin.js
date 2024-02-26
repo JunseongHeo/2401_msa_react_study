@@ -3,38 +3,50 @@ import axios from 'axios';
 import './NamLogin.css';
 import {Link} from "react-router-dom";
 
-const onClickLogin = (loginId,userPw) => {
+const onClickLogin = async(loginId,userPw) => {
     console.log("click to login");
     console.log("ID: " + loginId);
     console.log("PW: " + userPw);
-    axios
-        .post('/membernam/read/',
-            {loginId: loginId, userPw: userPw}
-        ).then((res) => {
-            alert(res.data);
+
+    if (loginId === '' || loginId === null) {
+        alert("아이디를 입력해주세요.");
+        return;
+    }
+
+    if (userPw === '' || userPw === null) {
+        alert("비밀번호를 입력해주세요.");
+        return;
+    }
+
+    // await 키워드는 async 함수 안에서만 사용 가능함
+    await axios
+        .get(`/membernam/read/${loginId}/${userPw}`)
+        .then((res) => {
             console.log("res.data.loginId: " , res.data.loginId);
+            console.log("res.data.loginId: " , res.data.userPw);
+            console.log(res.data);
+
+
             console.log("res.data.msg: " , res.data.msg);
-            if (res.data.loginId === undefined) {
+
+            if (res.data.loginId === undefined || res.data.loginId === null) {
                 console.log("====", res.data.loginId);
                 alert("입력하신 ID가 일치하지 않습니다.");
-            } else if (res.data.loginId === null) {
-                console.log("====", res.data.loginId);
-                alert("입력하신 ID가 일치하지 않습니다.");
-            } else if (res.data.userPw === undefined) {
+
+            } else if (res.data.userPw === undefined || res.data.userPw === null) {
                 console.log("====", res.data.userPw);
                 alert("입력하신 비밀번호가 일치하지 않습니다.");
-            } else if (res.data.userPw === null) {
-                console.log("====", res.data.userPw);
-                alert("입력하신 비밀번호가 일치하지 않습니다.");
+
             } else if (res.data.loginId === loginId) {
                 console.log("====", "success!");
-                sessionStorage.setItem("loginId", loginId);
-                sessionStorage.setItem("userPw", userPw);
-            } else {
+                sessionStorage.setItem("loginId", JSON.stringify(loginId));
+                sessionStorage.setItem("userPw", JSON.stringify(userPw));
                 document.location.href="/nam";
             }
         })
-        .catch();
+        .catch((error) => {
+            console.log('error : '+error);
+        });
 };
 
 function NamLogin() {

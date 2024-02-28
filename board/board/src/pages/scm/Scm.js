@@ -13,6 +13,8 @@ function Scm() {
     const [data, setData] = useState({}); // {} : object
     const [tot, setTot] = useState(0);
     const [pageable, setPageable] = useState({});
+    const [searchParam, setSearchParam] = useState("title");
+    const [searchText, setSearchText] = useState("");
 
     // location : 현재 브라우저 열려있는 페이지의 위치 정보가 담긴 브라우저 내장객체
     // useLocation() : 이동한 페이지에서 값을 가져올때 사용 ex)location.state.키
@@ -25,12 +27,13 @@ function Scm() {
     }
 
     useEffect(() => {
-        axios.get('/boardscm/read'+search).then((response) => {
+        axios.get('/boardscm/read'+search+'&searchParam='+searchParam+'&searchText='+searchText).then((response) => {
             setData(response.data.content);
             setTot(response.data.totalElements);
             setPageable(response.data.pageable); // 컨트롤러에서 보낸 pageable
         })
-    }, [search]);
+    }, [search,searchParam,searchText]);
+    // dependencies => 없으면 마운트(최초그려질때)와 업데이트시 / []이면 마운트시 / [.....]이면 마운트와 해당 상태변수가 변경될때 useEffect 실행
 
   /**  const item = (Object.values(data).filter(vo => vo.deleteYn === 'N')).map((item)
     * 필터 vo에 추가 */
@@ -52,12 +55,21 @@ function Scm() {
 
     return (<>
         <ScmHeader></ScmHeader>
-        <div className="btn-right">
-            <Link to={`/scm/create`}>
-                <button className="scm-view-go-list-btn">
-                    게시글 작성
-                </button>
-            </Link>
+        <div className="scm-btn">
+            <div className="scm-btn-left">
+                <Link to={`/scm/create`}>
+                    <button className="scm-view-go-list-btn">
+                        게시글 작성
+                    </button>
+                </Link>
+            </div>
+            <div className="scm-btn-right">
+                <select className="scm-view-select" id="searchParam" onChange={event => {setSearchParam(event.target.value)}}>
+                    <option value="title">제목</option>
+                    <option value="writer">작성자</option>
+                </select>
+                <input className="scm-view-input" id="searchText" onChange={event => {setSearchText(event.target.value)}}/>
+            </div>
         </div>
         <CommonTable headersName={['글번호', '제목', '작성자', '등록일', '수정일']}
                      headersWidth={['5%', '50%', '15%', '15%', '15%']}>

@@ -83,3 +83,21 @@ button:disabled {
 textarea,.content {
     height: 200px;
 }
+
+.scm-id-ck {
+    text-align: right;
+    font-weight: bolder;
+    font-size: smaller;
+    white-space: nowrap;
+}
+
+#blue {
+    margin-top: -15px;
+    color: blue;
+}
+
+#red {
+    margin-top: -15px;
+    color: red;
+}
+

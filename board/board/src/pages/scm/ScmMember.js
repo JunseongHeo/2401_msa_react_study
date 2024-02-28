@@ -4,7 +4,6 @@ import './ScmView.css'
 import React, {useEffect, useState} from "react";
 
 const HandleSignUp = async({body}) => {
-
     const headers = {
         'Content-Type': 'application/json'
     }
@@ -25,24 +24,13 @@ const HandleSignUp = async({body}) => {
     });
 }
 
-const HandleSignCheck = async(loginId,setSignUpCk) => {
-    await axios.get('/memberscm/read/'+loginId).then((response) => {
-        if(response.data !== null) {
-            alert("이미 사용중인 아이디 입니다.");
-        } else {
-            setSignUpCk(false);
-            alert("사용 가능한 아이디 입니다.");
-        }
-    }).catch((error) => {
-        console.log('error : '+error);
-    });
-}
-
 function ScmMember() {
     const [loginId, setLoginId] = useState('');
     const [userPw, setUserPw] = useState('');
     const [userName, setUserName] = useState('');
     const [signUpCk, setSignUpCk] = useState(true);
+    const [signUpCkColor, setSignUpCkColor] = useState('');
+    const [signUpCkMsg, setSignUpCkMsg] = useState('');
 
     const body = {
         loginId : loginId,
@@ -51,8 +39,24 @@ function ScmMember() {
     }
 
     useEffect(() => {
-        setSignUpCk(true);
-    }, [loginId]);
+        axios.get('/memberscm/read/'+ (loginId===''?null:loginId)).then((response) => {
+            if (loginId === '') {
+                signUpSet(false,'','');
+            } else if(response.data !== null) {
+                signUpSet(false,'red','이미 사용중인 아이디 입니다');
+            } else {
+                signUpSet(true,'blue','사용 가능한 아이디 입니다');
+            }
+        }).catch((error) => {
+            console.log('error : '+error);
+        });
+
+        function signUpSet(ck,color,msg) {
+            setSignUpCk(ck && userPw); // 아이디중복체크 및 비번입력여부 확인
+            setSignUpCkColor(color);
+            setSignUpCkMsg(msg);
+        }
+    }, [loginId,userPw]);
 
     return (<>
         <div>
@@ -60,24 +64,19 @@ function ScmMember() {
             <div className="scm-login-wrapper">
                 <div className="scm-view-row">
                     <label>아이디</label>
-                    <input id="loginId" onChange={event => {
-                        setLoginId(event.target.value)}}></input>
-                    <button className="scm-red-btn" onClick={() => HandleSignCheck(loginId,setSignUpCk)}>
-                        중복검사
-                    </button>
+                    <input id="loginId" onChange={(event) => {setLoginId(event.target.value)}}></input>
                 </div>
+                <div className="scm-id-ck" id={signUpCkColor}>{signUpCkMsg}</div>
                 <div className="scm-view-row">
                     <label>비밀번호</label>
-                    <input id="userPw" onChange={event => {
-                        setUserPw(event.target.value)}}></input>
+                    <input id="userPw" onChange={(event) => {setUserPw(event.target.value)}}></input>
                 </div>
                 <div className="scm-view-row">
                     <label>이름</label>
-                    <input id="userName" onChange={event => {
-                        setUserName(event.target.value)}}></input>
+                    <input id="userName" onChange={event => {setUserName(event.target.value)}}></input>
                 </div>
                 <div className="scm-footer">
-                    <button id="signUp" align="right" className="scm-view-go-list-btn" onClick={() => HandleSignUp({body})} disabled={signUpCk}>
+                    <button id="signUp" align="right" className="scm-view-go-list-btn" onClick={() => HandleSignUp({body})} disabled={!signUpCk}>
                         가입
                     </button>
                 </div>

@@ -35,7 +35,8 @@ public class MemberScmService {
 
     public boolean login(@RequestBody MemberScm member) {
         Optional<MemberScm> getDBMem = memberScmRepository.findByLoginId(member.getLoginId());
-        if (bCryptPasswordEncoder.matches(member.getUserPw(), getDBMem.get().getUserPw())) {
+        String getDBPw = getDBMem.orElse(new MemberScm()).getUserPw();
+        if (bCryptPasswordEncoder.matches(member.getUserPw(), getDBPw)) {
             return true;
         }
         return false;

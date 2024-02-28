@@ -5,6 +5,8 @@ import com.board.boardback.service.MemberServiceJun;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/memberjun")
 public class MemberControllerJun {
@@ -16,5 +18,10 @@ public class MemberControllerJun {
     @PostMapping("/create")
     public MemberJun createMember(@RequestBody MemberJun memberJun) {
         return memberServiceJun.createMember(memberJun);
+    }
+
+    @PostMapping("/all")
+    public List<MemberJun> selectAllMembers() {
+        return memberServiceJun.selectAllMembers();
     }
 }

@@ -21,6 +21,7 @@ import ScmLogin from "./pages/scm/ScmLogin";
 import ScmMember from "./pages/scm/ScmMember";
 import Nam from './pages/nam/Nam';
 import NamLogin from './pages/nam/NamLogin';
+import NamMember from './pages/nam/NamMember';
 import NamView from './pages/nam/NamView';
 import NamCreate from "./pages/nam/NamCreate";
 import NamUpdate from "./pages/nam/NamUpdate";
@@ -58,6 +59,7 @@ function App() {
             <Route path='/scm/login' element={<ScmLogin />}/>
             <Route path='/scm/member' element={<ScmMember />}/>
             <Route path='/nam/login_nam' element={<NamLogin />}/>
+            <Route path='/nam/member' element={<NamMember />}/>
             <Route path='/nam' element={<Nam />}/>
             <Route path='/nam/:namId' element={<NamView />}/>
             <Route path='/nam/create' element={<NamCreate />}/>

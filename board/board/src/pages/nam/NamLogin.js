@@ -3,6 +3,18 @@ import axios from 'axios';
 import './NamLogin.css';
 import {Link} from "react-router-dom";
 
+/*const onKeyPressLogin = (loginId,userPw) => {
+    console.log(loginId,userPw);
+    return;
+
+    if (this.key === 'Enter') {
+        console.log(loginId,userPw);
+
+        // onClickLogin;
+
+    }
+}*/
+
 const onClickLogin = async(loginId,userPw) => {
     console.log("click to login");
     console.log("ID: " + loginId);
@@ -20,7 +32,7 @@ const onClickLogin = async(loginId,userPw) => {
 
     // await 키워드는 async 함수 안에서만 사용 가능함
     await axios
-        .get(`/membernam/read/${loginId}/${userPw}`)
+        .get(`/membernam/read/${loginId}`)
         .then((res) => {
             console.log("res.data.loginId: " , res.data.loginId);
             console.log("res.data.loginId: " , res.data.userPw);
@@ -67,7 +79,7 @@ function NamLogin() {
             <div className="nam-login-row">
                 <input type="text"
                        className="form-control"
-                       placeholder="Enter ID"
+                       placeholder="Input ID"
                        name="input_id"
                        value={inputId}
                        onChange={HandleInputId}
@@ -76,15 +88,16 @@ function NamLogin() {
             <div className="nam-login-row">
                 <input type="text"
                        className="form-control"
-                       placeholder="Enter Password"
+                       placeholder="Input Password"
                        name="input_pw"
                        value={inputPw}
                        onChange={HandleInputPw}
+                       // onKeyPress={() => onKeyPressLogin(inputId,inputPw)}
                 />
             </div>
-            <button type="button" className="login-button" onClick={() => onClickLogin(inputId,inputPw)}>Sign In</button>
+            <button type="button" className="nam-login-button" onClick={() => onClickLogin(inputId,inputPw)}>Sign In</button>
             <Link to={`/nam/member`}>
-                <button className="signup-button">
+                <button className="nam-signup-button">
                     Sign Up
                 </button>
             </Link>

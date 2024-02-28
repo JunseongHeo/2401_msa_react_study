@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 
@@ -27,8 +28,14 @@ public class BoardScmService {
     }
 
     // list all boards
-    public Page<BoardScm> listAllBoards(Pageable pageable) {
-        return boardScmRepository.findAllByOrderByUidDesc(pageable);
+    public Page<BoardScm> listBoards(Pageable pageable, String searchParam, String searchText) {
+        if (searchParam.equals("title")) {
+            return boardScmRepository.findByTitleContainingOrderByUidDesc(searchText,pageable);
+        } else if (searchParam.equals("writer")) {
+            return boardScmRepository.findByWriterContainingOrderByUidDesc(searchText,pageable);
+        } else {
+            return boardScmRepository.findAllByOrderByUidDesc(pageable);
+        }
     }
 
     // get board by id

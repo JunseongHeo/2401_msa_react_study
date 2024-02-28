@@ -22,11 +22,7 @@ public class SecurityConfig {
 
         http.csrf(csrf -> csrf.disable()).authorizeRequests(requests -> requests
        /*         .requestMatchers("/boardscm/**").authenticated()*/
-                .anyRequest().permitAll())
-				.formLogin(login -> login
-						.loginProcessingUrl("/memberscm/login")
-						.usernameParameter("loginId")
-						.defaultSuccessUrl("/"));
+                .anyRequest().permitAll());
 
         return http.build();
 

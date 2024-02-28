@@ -7,4 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BoardScmRepository extends JpaRepository<BoardScm, Integer> {
     Page<BoardScm> findAllByOrderByUidDesc(Pageable pageable); // findAllOrderByUidDesc : error
+
+    Page<BoardScm> findByTitleContainingOrderByUidDesc(String searchText, Pageable pageable);
+
+    Page<BoardScm> findByWriterContainingOrderByUidDesc(String searchText, Pageable pageable);
 }

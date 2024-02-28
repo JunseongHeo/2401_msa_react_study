@@ -24,4 +24,9 @@ public class MemberScmController {
     public Optional<MemberScm> getMemberByLoginId(@PathVariable String loginId) {
         return memberScmService.getMemberByLoginId(loginId);
     }
+
+    @PostMapping("/login")
+    public boolean login(@RequestBody MemberScm member) {
+        return memberScmService.login(member);
+    }
 }

@@ -30,6 +30,9 @@ public class MemberScm {
     @Column(name = "user_name")
     private String userName;
 
+    @Column(name = "user_auth")
+    private String userAuth;
+
     @Column(name = "delete_yn")
     private String deleteYn;
 

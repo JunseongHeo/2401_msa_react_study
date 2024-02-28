@@ -42,13 +42,13 @@ function ScmMember() {
 
     useEffect(() => {
         if (loginId === '') {
-            signUpSet(true,'','');
+            signUpSet(false,'','');
         } else {
             axios.get('/memberscm/read/'+loginId).then((response) => {
                 if(response.data !== null) {
-                    signUpSet(true,'red','이미 사용중인 아이디 입니다');
+                    signUpSet(false,'red','이미 사용중인 아이디 입니다');
                 } else {
-                    signUpSet(false,'blue','사용 가능한 아이디 입니다');
+                    signUpSet(true,'blue','사용 가능한 아이디 입니다');
                 }
             }).catch((error) => {
                 console.log('error : '+error);
@@ -56,7 +56,7 @@ function ScmMember() {
         }
 
         function signUpSet(ck,color,msg) {
-            setSignUpCk(ck || !userPw); // 아이디중복체크 및 비번입력여부 확인
+            setSignUpCk(ck && userPw); // 아이디중복체크 및 비번입력여부 확인
             setSignUpCkColor(color);
             setSignUpCkMsg(msg);
         }
@@ -80,7 +80,7 @@ function ScmMember() {
                     <input id="userName" onChange={event => {setUserName(event.target.value)}}></input>
                 </div>
                 <div className="scm-footer">
-                    <button id="signUp" align="right" className="scm-view-go-list-btn" onClick={() => HandleSignUp({body})} disabled={signUpCk}>
+                    <button id="signUp" align="right" className="scm-view-go-list-btn" onClick={() => HandleSignUp({body})} disabled={!signUpCk}>
                         가입
                     </button>
                 </div>

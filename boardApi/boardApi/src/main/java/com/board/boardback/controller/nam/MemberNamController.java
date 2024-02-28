@@ -21,10 +21,10 @@ public class MemberNamController {
     }
 
     // get member by id
-    @GetMapping("/read/{loginId}/{userPw}")
-    public Optional<MemberNam> getMemberByLoginId(@PathVariable String loginId, @PathVariable String userPw) {
+    @GetMapping("/read/{loginId}")
+    public Optional<MemberNam> getMemberByLoginId(@PathVariable String loginId/*, @PathVariable String userPw*/) {
         System.out.println("loginId : " + loginId);
-        System.out.println("userPw : " + userPw);
+//        System.out.println("userPw : " + userPw);
 
         return memberService.getMemberByLoginId(loginId);
     }

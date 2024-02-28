@@ -16,7 +16,7 @@
     line-height: 22px;
 }
 
-.login-button {
+.nam-login-button {
     padding: 10px;
     background-color: #4dafc7;
     border:none;
@@ -27,13 +27,13 @@
     cursor:pointer;
 }
 
-.login-button:active {
-    color: #1d80a4;
+.nam-login-button:active {
+    color: #2490b7;
     background-color: #bcdde7;
     box-shadow: -5px -5px 30px 5px #78d8ef, 5px 5px 30px 5px #3a6fe3;
 }
 
-.signup-button {
+.nam-signup-button {
     text-decoration: none;
     padding: 10px;
     background-color: #e1935a;
@@ -45,8 +45,44 @@
     cursor:pointer;
 }
 
-.signup-button:active {
+.nam-signup-button:active {
     color: #c77334;
     background-color: #eedac5;
     box-shadow: -5px -5px 30px 5px #ecce81, 5px 5px 30px 5px #e17626;
+}
+
+.nam-check-id-btn {
+    height:35px;
+    width:110px;
+    padding: 10px;
+    background-color: #8357c5;
+    border:none;
+    border-radius: 5px;
+    color: white;
+    margin: 8px;
+    box-shadow: 0 0 10px #8f8c8b;
+    cursor:pointer;
+}
+
+.nam-check-id-btn:active {
+    color: #2d0d56;
+    background-color: #c3aaee;
+    box-shadow: -5px -5px 30px 5px #df78ef, 5px 5px 30px 5px #e33a6d;
+}
+
+.nam-cancel-button {
+    padding: 10px;
+    background-color: #839396;
+    border:none;
+    border-radius: 5px;
+    color: white;
+    margin: 8px;
+    box-shadow: 0 0 10px #8f8c8b;
+    cursor:pointer;
+}
+
+.nam-cancel-button:active {
+    color: #1d80a4;
+    background-color: #c7c7c7;
+    box-shadow: -5px -5px 30px 5px #a1dbe8, 5px 5px 30px 5px #8fabe5;
 }

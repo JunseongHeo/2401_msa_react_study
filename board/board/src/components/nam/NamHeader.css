@@ -1,7 +1,52 @@
 .nam-header {
     width: 80%;
     margin: 0 auto;
-    /* text-align: center; */
+    text-align: center;
     border-spacing: 0;
     display: block;
 }
+
+.nam-user-info .nam-user-greeting {
+    font-weight: 600;
+    font-size: 15pt;
+    color: #1d80a4;
+}
+
+.nam-sign-out-btn, .nam-create-btn {
+    margin-bottom: 30px;
+}
+
+.nam-sign-out-btn {
+    padding: 10px;
+    background-color: #8357c5;
+    border:none;
+    border-radius: 5px;
+    color: white;
+    margin: 8px;
+    box-shadow: 0 0 10px #8f8c8b;
+    cursor:pointer;
+}
+
+.nam-sign-out-btn:active {
+    color: #2d0d56;
+    background-color: #c3aaee;
+    box-shadow: -5px -5px 30px 5px #df78ef, 5px 5px 30px 5px #e33a6d;
+}
+
+.nam-create-btn {
+    padding: 10px;
+    background-color: #e87b37;
+    border:none;
+    border-radius: 5px;
+    color: white;
+    /*margin: 8px;*/
+    box-shadow: 0 0 10px #8f8c8b;
+    cursor:pointer;
+}
+
+.nam-create-btn:active {
+    color: #5b1d00;
+    background-color: #eaa077;
+    box-shadow: -5px -5px 30px 5px #f12d2d, 5px 5px 30px 5px #efc83b;
+}
+

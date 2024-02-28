@@ -3,13 +3,14 @@ import axios from "axios";
 import {Link, useParams} from 'react-router-dom';
 
 import './NamView.css'
+import {useLocation} from "react-router";
 
-function NamDelete(props) {
+function NamDelete(namId,paging) {
     if(window.confirm("삭제하시겠습니까?")) {
-        axios.delete('/nam/boards_nam/'+props).then((response)=> {
+        axios.delete('/nam/boards_nam/'+namId).then((response)=> {
             if(response.status === 200) {
                 alert("삭제되었습니다.");
-                window.location.href = "/nam";
+                window.location.href = "/nam"+paging;
             };
         })
     }
@@ -18,12 +19,16 @@ function NamDelete(props) {
 
 function GetData(namId) {
     const [data, setData] = useState({});
+    const [userCk, setUserCk] = useState(true);
+    const location = useLocation();
+
 
     useEffect(() => {
         axios.get('/nam/boards_nam/'+namId).then((response)=> {
             setData(response.data);
+            setUserCk(JSON.parse(sessionStorage.getItem("loginId")) === response.data.writer ? false : true);
         })
-    }, []);
+    }, [namId]);
 
     const item =  (<>
         <h2 align="center">게시글 상세정보</h2>
@@ -48,7 +53,21 @@ function GetData(namId) {
                     }
                 </div>
             </div>
-        </div></>)
+        </div>
+        <div className="nam-footer">
+            <Link to={`/nam`+location.state.paging}>
+                <button className="nam-view-go-list-btn">목록</button>
+            </Link>
+            <Link to={`/nam/update/${namId}`} state={{paging:location.state.paging}}>
+                <button align="right" className="nam-go-create-btn" disabled={userCk}>
+                    수정
+                </button>
+            </Link>
+            <button align="right" className="nam-view-go-list-btn" onClick={(e)=>{NamDelete(namId, location.state.paging, e)}} disabled={userCk}>
+                삭제
+            </button>
+        </div>
+    </>)
 
     return item;
 }
@@ -56,24 +75,12 @@ function GetData(namId) {
 function NamView() {
     const {namId} = useParams();
     const item = GetData(namId);
+
     return (<>
-        <div>
-            {item}
-        </div>
-        <div className="nam-footer">
-            <Link to={`/nam`}>
-                <button className="nam-view-go-list-btn">목록</button>
-            </Link>
-            <Link to={`/nam/update/${namId}`}>
-                <button align="right" className="nam-go-create-btn">
-                    수정
-                </button>
-            </Link>
-            <button align="right" className="nam-view-go-list-btn" onClick={(e)=>{NamDelete(namId, e)}}>
-                삭제
-            </button>
-        </div>
-    </> );
+                <div>
+                    {item}
+                </div>
+            </> );
 }
 
 export default NamView;

@@ -22,8 +22,8 @@ public class BoardScmController {
 
     // list all boards
     @GetMapping("/read")
-    public Page<BoardScm> getBoardList(Pageable pageable) {
-        return boardScmService.listAllBoards(pageable);
+    public Page<BoardScm> getBoardList(Pageable pageable, @RequestParam String searchParam, @RequestParam String searchText) {
+        return boardScmService.listBoards(pageable,searchParam,searchText);
     }
 
     // get board by id

@@ -38,22 +38,18 @@ function ScmMember() {
         userName : userName
     }
 
-
-
     useEffect(() => {
-        if (loginId === '') {
-            signUpSet(false,'','');
-        } else {
-            axios.get('/memberscm/read/'+loginId).then((response) => {
-                if(response.data !== null) {
-                    signUpSet(false,'red','이미 사용중인 아이디 입니다');
-                } else {
-                    signUpSet(true,'blue','사용 가능한 아이디 입니다');
-                }
-            }).catch((error) => {
-                console.log('error : '+error);
-            });
-        }
+        axios.get('/memberscm/read/'+ (loginId===''?null:loginId)).then((response) => {
+            if (loginId === '') {
+                signUpSet(false,'','');
+            } else if(response.data !== null) {
+                signUpSet(false,'red','이미 사용중인 아이디 입니다');
+            } else {
+                signUpSet(true,'blue','사용 가능한 아이디 입니다');
+            }
+        }).catch((error) => {
+            console.log('error : '+error);
+        });
 
         function signUpSet(ck,color,msg) {
             setSignUpCk(ck && userPw); // 아이디중복체크 및 비번입력여부 확인

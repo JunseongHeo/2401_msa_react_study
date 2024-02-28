@@ -4,16 +4,20 @@ import {Link} from 'react-router-dom';
 
 import './ScmView.css'
 
-const HandleLogin = async(loginId,userPw) => {
+const HandleLogin = async({body}) => {
 
-    if (loginId === '') {
+    if (body.loginId === '') {
         alert("아이디를 입력해주세요.");
         return;
     }
 
-    await axios.get('/memberscm/read/'+loginId).then((response) => {
-        if(response.data !== null && response.data.userPw === userPw) {
-            sessionStorage.setItem("loginId", JSON.stringify(loginId));
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+
+    await axios.post('/memberscm/login', body, {headers: headers}).then((response) => {
+        if (response.data === true) {
+            sessionStorage.setItem("loginId", JSON.stringify(body.loginId));
             window.location.href = "/scm";
         } else {
             alert("아이디 비밀번호를 다시 확인해주세요.");
@@ -26,6 +30,11 @@ const HandleLogin = async(loginId,userPw) => {
 function ScmLogin() {
     const [loginId, setLoginId] = useState('');
     const [userPw, setUserPw] = useState('');
+
+    const body = {
+        loginId : loginId,
+        userPw : userPw
+    }
 
     return (<>
         <div>
@@ -42,7 +51,7 @@ function ScmLogin() {
                         setUserPw(event.target.value)}}></input>
                 </div>
                 <div className="scm-footer">
-                    <button align="right" className="scm-view-go-list-btn" onClick={() => HandleLogin(loginId,userPw)}>
+                    <button align="right" className="scm-view-go-list-btn" onClick={() => HandleLogin({body})}>
                         로그인
                     </button>
                     <Link to={`/scm/member`}>

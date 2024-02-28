@@ -35,10 +35,29 @@ button:disabled {
     white-space: nowrap;
 }
 
-.btn-right {
-    width: 90%;
-    text-align: right;
-    margin-bottom: 10px;
+.scm-btn {
+    width: 80%;
+    margin: 0 auto;
+    overflow :hidden
+}
+
+.scm-btn-right {
+    float: right;
+}
+
+.scm-btn-left {
+    float: left;
+}
+
+.scm-view-select {
+    padding: 7px;
+    border-radius: 3px;
+    font-weight: bolder;
+}
+
+.scm-view-input {
+    padding: 7px;
+    border-radius: 3px;
 }
 
 .scm-view-row {

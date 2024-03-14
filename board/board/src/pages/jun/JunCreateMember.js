@@ -11,8 +11,8 @@ const HandleCreateSubmit = async({body}) => {
     const response = await axios.post('/memberjun/create', body, {headers: headers}).then((response) => {
         console.log('status : '+response.status);
         if(response.status === 200) {
-            alert("저장되었습니다");
-            window.location.href = "/jun";
+            alert("회원가입이 완료되었습니다.");
+            window.location.href = "/jun/logIn";
         }
     }).catch((error) => {
         console.log('error : '+error);

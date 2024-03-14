@@ -34,7 +34,7 @@ function Jun() {
         <CommonTableRow key={item.uid}>
             <CommonTableColumn>{item.uid}</CommonTableColumn>
             <CommonTableColumn>
-                <Link to={`/juns/${item.uid}`}>
+                <Link to={`/jun/${item.uid}`}>
                     {item.title}
                 </Link>
             </CommonTableColumn>

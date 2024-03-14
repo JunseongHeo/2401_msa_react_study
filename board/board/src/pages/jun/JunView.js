@@ -66,9 +66,9 @@ function JunView() {
                     수정
                 </button>
             </Link>
-                <button align="right" className="jun-view-go-list-btn" onClick={(e)=>{JunDelete(junId, e)}}>
-                    삭제
-                </button>
+            <button align="right" className="jun-view-go-list-btn" onClick={(e)=>{JunDelete(junId, e)}}>
+                삭제
+            </button>
         </div>
    </> );
 }

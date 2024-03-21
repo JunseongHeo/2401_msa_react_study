@@ -1,7 +1,7 @@
 package com.board.boardback.controller.nam;
 
 import com.board.boardback.model.nam.BoardNam;
-import lombok.RequiredArgsConstructor;
+import com.board.boardback.service.nam.BoardNamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/nam")
-@RequiredArgsConstructor
 public class BoardNamController {
 
     @Autowired

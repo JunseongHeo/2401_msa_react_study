@@ -18,7 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity // --> 시큐리티 활성솨 -> 기본 스프링 필터체인에 등록
 public class SecurityConfig {
 
 	@Autowired

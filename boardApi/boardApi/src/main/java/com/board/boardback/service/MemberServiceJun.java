@@ -3,6 +3,8 @@ package com.board.boardback.service;
 import com.board.boardback.model.jun.MemberJun;
 import com.board.boardback.repository.jun.MemberRepositoryJun;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;

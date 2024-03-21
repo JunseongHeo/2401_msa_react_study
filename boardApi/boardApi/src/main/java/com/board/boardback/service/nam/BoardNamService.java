@@ -1,4 +1,4 @@
-package com.board.boardback.controller.nam;
+package com.board.boardback.service.nam;
 
 import com.board.boardback.exception.ResourceNotFoundException;
 import com.board.boardback.model.nam.BoardNam;

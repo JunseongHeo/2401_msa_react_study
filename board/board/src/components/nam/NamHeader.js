@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './NamHeader.css';
 
 const HandleLogOut = async () => {
-    sessionStorage.removeItem("loginId");
+    localStorage.removeItem("loginId");
     window.location.href = "/nam/login_nam";
 }
 
@@ -11,7 +11,7 @@ function NamHeader() {
     const [loginId, setLoginId] = useState('');
 
     useEffect(() => {
-        let sessionId = JSON.parse(sessionStorage.getItem("loginId"));
+        let sessionId = localStorage.getItem("loginId");    // sessionStorage가 아닌 localStorage에 셋팅
         if (sessionId != null) {
             setLoginId(sessionId);
         } else {

@@ -15,55 +15,58 @@ import {Link} from "react-router-dom";
     }
 }*/
 
-const onClickLogin = async(loginId,userPw) => {
+const onClickLogin = async({body}) => {
     console.log("click to login");
-    console.log("ID: " + loginId);
-    console.log("PW: " + userPw);
 
-    if (loginId === '' || loginId === null) {
+    const jwt = require("jsonwebtoken");
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+
+    if (body.loginId === '' || body.loginId === null) {
         alert("아이디를 입력해주세요.");
         return;
     }
 
-    if (userPw === '' || userPw === null) {
+    if (body.userPw === '' || body.userPw === null) {
         alert("비밀번호를 입력해주세요.");
         return;
     }
 
     // await 키워드는 async 함수 안에서만 사용 가능함
-    await axios
-        .get(`/membernam/read/${loginId}`)
-        .then((res) => {
-            console.log("res.data.loginId: " , res.data.loginId);
-            console.log("res.data.loginId: " , res.data.userPw);
-            console.log(res.data);
+    try {
+        await axios
+            // .post(`/membernam/read/signIn/${body.loginId}/${body.userPw}`)   // security 적용 전
+            .post(`/login`,body,{headers:headers})
+            .then((response) => {
+                let jwtToken = response.headers.get("Authorization");
+                localStorage.setItem("Authorization", jwtToken);
 
+                const decode = jwt.decode(jwtToken, {complete: true});
+                localStorage.setItem("loginId", decode.payload.id);
+                localStorage.setItem("username", decode.payload.username);
 
-            console.log("res.data.msg: " , res.data.msg);
-
-            if (res.data.loginId === undefined || res.data.loginId === null) {
-                console.log("====", res.data.loginId);
-                alert("입력하신 ID가 일치하지 않습니다.");
-
-            } else if (res.data.userPw === undefined || res.data.userPw === null) {
-                console.log("====", res.data.userPw);
-                alert("입력하신 비밀번호가 일치하지 않습니다.");
-
-            } else if (res.data.loginId === loginId) {
-                console.log("====", "success!");
-                sessionStorage.setItem("loginId", JSON.stringify(loginId));
-                sessionStorage.setItem("userPw", JSON.stringify(userPw));
                 document.location.href="/nam";
-            }
-        })
-        .catch((error) => {
-            console.log('error : '+error);
-        });
-};
+            })
+            .catch((ex) => {
+                console.log('login request failed : '+ ex);
+                alert('Check ID and Password');
+                window.location.href = "/nam/login_nam";
+            });
+    } catch(error) {
+        console.log("error : " + error);
+    }
+
+}
 
 function NamLogin() {
     const [inputId, setInputId] = useState('');
     const [inputPw, setInputPw] = useState('');
+
+    const body = {
+        username : inputId,
+        password : inputPw
+    }
 
     const HandleInputId = (e) => {
         setInputId(e.target.value);
@@ -95,7 +98,7 @@ function NamLogin() {
                        // onKeyPress={() => onKeyPressLogin(inputId,inputPw)}
                 />
             </div>
-            <button type="button" className="nam-login-button" onClick={() => onClickLogin(inputId,inputPw)}>Sign In</button>
+            <button type="button" className="nam-login-button" onClick={() => onClickLogin({body})}>Sign In</button>
             <Link to={`/nam/member`}>
                 <button className="nam-signup-button">
                     Sign Up
